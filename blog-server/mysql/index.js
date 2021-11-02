@@ -15,8 +15,8 @@ class Mysql {
         if (error) {
           throw error
         };
+        console.log(fields);
         resolve(results)
-        // console.log('The solution is: ', results[0].solution);
       });
     })
   }

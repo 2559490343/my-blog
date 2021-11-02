@@ -9,5 +9,5 @@ export default defineConfig({
     },
   },
   title: '个人博客',
-  favicon: '/favicon.ico', 
+  favicon: '/favicon.ico',
 });

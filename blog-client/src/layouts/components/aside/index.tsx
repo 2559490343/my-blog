@@ -25,7 +25,7 @@ export default withRouter(function Aside(props) {
       },
       {
         label: 'AntV/L7',
-        to: '/visualization/AntV-L7',
+        to: '/visualization/AntVL7',
       },
       {
         label: 'three.js',
@@ -41,7 +41,7 @@ export default withRouter(function Aside(props) {
     '/javascript': [
       {
         label: '数据类型',
-        to: '/javascript/data-type',
+        to: '/javascript/dataYype',
       },
       {
         label: '作用域以及闭包机制',
@@ -53,11 +53,11 @@ export default withRouter(function Aside(props) {
       },
       {
         label: '高阶编程',
-        to: '/javascript/high-order',
+        to: '/javascript/highOrder',
       },
       {
         label: '封装工具包',
-        to: '/javascript/utils',
+        to: '/javascript/tools',
       },
       {
         label: '面向对象',
@@ -97,7 +97,7 @@ export default withRouter(function Aside(props) {
       },
       {
         label: 'vue3的底层原理',
-        to: '/vue/vue3-principle',
+        to: '/vue/Vue3Principle',
       },
     ],
     '/react': [
@@ -133,7 +133,7 @@ export default withRouter(function Aside(props) {
       },
       {
         label: '常用文章地址',
-        to: '/rep/commonly-address',
+        to: '/rep/commonlyAddress',
       },
     ],
   };

@@ -1,9 +1,13 @@
 import { NavLink } from 'umi';
+import { useState } from 'react';
+import Login from '@/components/login';
 import './index.less';
 export default function Header() {
+  const [showLogin, setShowLogin] = useState(true);
   return (
     <header>
-      <div className="logo">
+      <Login showLogin={showLogin} hideLogin={() => setShowLogin(false)} />
+      <div className="logo" onClick={() => setShowLogin(!showLogin)}>
         <span className="B">B</span>
         <span className="L">L</span>
         <span className="O">O</span>
@@ -14,14 +18,30 @@ export default function Header() {
           <NavLink to="/visualization" activeClassName="active">
             可视化
           </NavLink>
-          <NavLink to="/stylesheet" activeClassName="active">CSS</NavLink>
-          <NavLink to="/javascript" activeClassName="active">JavaScript</NavLink>
-          <NavLink to="/webpack" activeClassName="active">Webpack</NavLink>
-          <NavLink to="/vue" activeClassName="active">Vue</NavLink>
-          <NavLink to="/react" activeClassName="active">React</NavLink>
-          <NavLink to="/git" activeClassName="active">Git</NavLink>
-          <NavLink to="/linux" activeClassName="active">Linux</NavLink>
-          <NavLink to="/rep" activeClassName="active">知识库</NavLink>
+          <NavLink to="/stylesheet" activeClassName="active">
+            CSS
+          </NavLink>
+          <NavLink to="/javascript" activeClassName="active">
+            JavaScript
+          </NavLink>
+          <NavLink to="/webpack" activeClassName="active">
+            Webpack
+          </NavLink>
+          <NavLink to="/vue" activeClassName="active">
+            Vue
+          </NavLink>
+          <NavLink to="/react" activeClassName="active">
+            React
+          </NavLink>
+          <NavLink to="/git" activeClassName="active">
+            Git
+          </NavLink>
+          <NavLink to="/linux" activeClassName="active">
+            Linux
+          </NavLink>
+          <NavLink to="/rep" activeClassName="active">
+            知识库
+          </NavLink>
         </nav>
       </div>
     </header>

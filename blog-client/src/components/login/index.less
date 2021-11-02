@@ -1,0 +1,86 @@
+.login-page {
+  .m-modal {
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 8px;
+    position: fixed;
+    bottom: -150%;
+    left: 50%;
+    transform: translate(-50%, -140%);
+    z-index: 2;
+    transition: all 0.4s ease;
+    opacity: 0;
+    box-sizing: border-box;
+    padding: 20px;
+    .login-header {
+      display: flex;
+      justify-content: space-between;
+      color: #000;
+      align-items: center;
+      .title {
+        font-size: 20px;
+        user-select: none;
+      }
+      .close-btn {
+        cursor: pointer;
+      }
+    }
+    .login-form-area,
+    .register-form-area {
+      margin-top: 30px;
+      .form-btn {
+        border: none;
+        border-radius: 3px;
+        line-height: 20px;
+        outline: none;
+        user-select: none;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition-property: color, box-shadow, background-color, opacity;
+        transition-duration: 0.3s;
+        overflow: hidden;
+        width: 100%;
+        cursor: pointer;
+        opacity: 1;
+        background-color: rgb(0, 122, 255);
+        color: #fff;
+        font-size: 14px;
+        padding: 8px 12px;
+      }
+      .form-btn:hover {
+        background-color: rgb(0, 103, 216);
+      }
+      .form-tips {
+        color: rgb(0, 122, 255);
+        cursor: pointer;
+        font-size: 12px;
+      }
+      .form-tips:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .m-modal-mark {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    opacity: 0;
+    z-index: 1;
+    transition: all 0.3s;
+    visibility: hidden;
+  }
+  .m-modal.show {
+    opacity: 1;
+    bottom: -50%;
+  }
+  .m-modal-mark.show {
+    opacity: 0.6;
+    visibility: visible;
+  }
+}
