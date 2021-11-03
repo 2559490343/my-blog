@@ -6,6 +6,7 @@ import './index.less';
 export default function Login(props: {
   showLogin: boolean;
   hideLogin: () => void;
+  setIsLogin: (flag: boolean) => void;
 }) {
   const [loginForm] = Form.useForm();
   const [registerForm] = Form.useForm();
@@ -18,6 +19,7 @@ export default function Login(props: {
   };
   const onLoginFinish = (values: any) => {
     console.log('loginvalues', values);
+    props.setIsLogin(true);
     handleHideForm();
   };
 
@@ -41,7 +43,7 @@ export default function Login(props: {
     setShowRegister(flag);
     resetForms();
   };
-  const userNameValidator = async (rule, value) => {
+  const userNameValidator = async (rule: any, value: string) => {
     const len = value.length;
     if (len < 4) {
       throw new Error('用户名不能小于4位数!');
@@ -50,7 +52,7 @@ export default function Login(props: {
     }
   };
 
-  const passwordValidator = async (rule, value: string | number) => {
+  const passwordValidator = async (rule: any, value: string) => {
     const len = value.length;
     if (len < 6) {
       throw new Error('密码不能小于6位数!');
@@ -59,7 +61,7 @@ export default function Login(props: {
     }
   };
 
-  const confirmValidator = async (rule, value: string | number) => {
+  const confirmValidator = async (rule: any, value: string | number) => {
     if (value != registerForm.getFieldValue('password')) {
       throw new Error('确认密码不一致!');
     }

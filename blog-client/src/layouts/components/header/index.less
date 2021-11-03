@@ -2,7 +2,7 @@ header {
   display: flex;
   justify-content: space-between;
   height: 40px;
-  padding: 5px 30px;
+  padding: 5px 20px;
   align-items: center;
   background-color: #262739;
   min-width: 1000px;
@@ -12,7 +12,6 @@ header {
     height: 100%;
     line-height: 100%;
     user-select: none;
-    flex: 1;
     .B {
       color: #17aaba;
       margin-right: -6px;
@@ -29,21 +28,27 @@ header {
       color: #b0b3a2;
     }
   }
-  .nav {
-    a {
-      color: #fff;
-      font-weight: 600;
-      font-style: italic;
-      margin-right: 40px;
-      font-size: 16px;
+  .right {
+    display: flex;
+    .nav {
+      a {
+        color: #fff;
+        font-weight: 600;
+        font-style: italic;
+        margin-right: 40px;
+        font-size: 16px;
+      }
+      a:last-child {
+        margin-right: 0;
+      }
+      a.active {
+        color: #1890ff;
+        text-decoration: underline;
+        text-decoration-color: #1890ff;
+      }
     }
-    a:last-child {
-      margin-right: 0;
-    }
-    a.active {
-      color: #1890ff;
-      text-decoration: underline;
-      text-decoration-color: #1890ff;
+    .user {
+      margin-left: 30px;
     }
   }
 }
