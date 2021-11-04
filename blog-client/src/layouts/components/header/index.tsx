@@ -1,8 +1,9 @@
 import { NavLink } from 'umi';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Login from '@/components/login';
 import { Avatar, Menu, Dropdown, Modal } from 'antd';
 import { UserOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import { getStorage, setStorage, removeStorage } from '@/utils';
 import './index.less';
 export default function Header() {
   const [showLogin, setShowLogin] = useState(false);
@@ -13,9 +14,17 @@ export default function Header() {
       icon: <ExclamationCircleOutlined />,
       content: '确定要退出登录吗？',
       okText: '确认',
-      canceText: '取消',
-      onOk: () => setIsLogin(false),
+      // canceText: '取消',
+      onOk: () => {
+        removeStorage('isLogin');
+        setIsLogin(false);
+      },
     });
+  };
+
+  const handleLogin = () => {
+    setIsLogin(true);
+    setStorage('isLogin', true);
   };
   const menu = (
     <Menu>
@@ -24,11 +33,18 @@ export default function Header() {
       </Menu.Item>
     </Menu>
   );
+
+  useEffect(() => {
+    if (getStorage('isLogin').value) {
+      setIsLogin(true);
+    }
+  }, []);
+
   return (
     <header>
       <Login
         showLogin={showLogin}
-        setIsLogin={setIsLogin}
+        handleLogin={handleLogin}
         hideLogin={() => setShowLogin(false)}
       />
       <div className="logo">
@@ -69,13 +85,12 @@ export default function Header() {
             </NavLink>
           </nav>
         </div>
-        <div className="user">
+        <div
+          className="user"
+          onClick={() => !isLogin && setShowLogin(!showLogin)}
+        >
           {!isLogin ? (
-            <Avatar
-              size={30}
-              icon={<UserOutlined />}
-              onClick={() => setShowLogin(!showLogin)}
-            />
+            <Avatar size={30} icon={<UserOutlined />} />
           ) : (
             <Dropdown overlay={menu} placement="bottomLeft" arrow>
               <Avatar size={30} src="https://joeschmoe.io/api/v1/random" />

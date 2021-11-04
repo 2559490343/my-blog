@@ -6,7 +6,7 @@ import './index.less';
 export default function Login(props: {
   showLogin: boolean;
   hideLogin: () => void;
-  setIsLogin: (flag: boolean) => void;
+  handleLogin: () => void;
 }) {
   const [loginForm] = Form.useForm();
   const [registerForm] = Form.useForm();
@@ -19,7 +19,7 @@ export default function Login(props: {
   };
   const onLoginFinish = (values: any) => {
     console.log('loginvalues', values);
-    props.setIsLogin(true);
+    props.handleLogin();
     handleHideForm();
   };
 
@@ -47,8 +47,8 @@ export default function Login(props: {
     const len = value.length;
     if (len < 4) {
       throw new Error('用户名不能小于4位数!');
-    } else if (len > 10) {
-      throw new Error('用户名不能超过10位数!');
+    } else if (len > 30) {
+      throw new Error('用户名不能超过30位数!');
     }
   };
 
