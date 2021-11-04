@@ -110,10 +110,10 @@ export default withRouter(function Aside(props) {
         to: '/react/principle',
       },
     ],
-    '/git': [
+    '/gitDir': [
       {
         label: '常用命令',
-        to: '/git/commands',
+        to: '/gitDir/commands',
       },
     ],
     '/linux': [

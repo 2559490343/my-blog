@@ -74,7 +74,7 @@ export default function Header() {
             <NavLink to="/react" activeClassName="active">
               React
             </NavLink>
-            <NavLink to="/git" activeClassName="active">
+            <NavLink to="/gitDir" activeClassName="active">
               Git
             </NavLink>
             <NavLink to="/linux" activeClassName="active">
