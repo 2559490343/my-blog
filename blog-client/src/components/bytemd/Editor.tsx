@@ -2,7 +2,7 @@ import { Editor } from '@bytemd/react';
 import plugin from './plugins';
 import 'bytemd/dist/index.min.css';
 import 'highlight.js/styles/vs.css';
-import { useState } from 'react';
+
 const { plugins, zhHans } = plugin;
 export default function mdEditor(props: { value: string; setValue: any }) {
   const { value, setValue } = props;

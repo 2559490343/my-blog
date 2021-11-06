@@ -1,6 +1,7 @@
 import Header from './components/header';
 import Aside from './components/aside';
 import Main from './components/main';
+import Write from '@/components/write';
 import styles from './index.less';
 
 export default function Layouts(props: any) {
@@ -10,8 +11,8 @@ export default function Layouts(props: any) {
       <section>
         <Aside />
         <Main>{props.children}</Main>
-        {/* <Main /> */}
       </section>
+      <Write />
     </div>
   );
 }

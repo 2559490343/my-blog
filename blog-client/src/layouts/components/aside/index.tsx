@@ -41,7 +41,7 @@ export default withRouter(function Aside(props) {
     '/javascript': [
       {
         label: '数据类型',
-        to: '/javascript/dataYype',
+        to: '/javascript/dataType',
       },
       {
         label: '作用域以及闭包机制',
@@ -140,7 +140,7 @@ export default withRouter(function Aside(props) {
   return (
     <aside>
       <nav>
-        {navList[path].map((link: linkType) => (
+        {(navList[path] || []).map((link: linkType) => (
           <NavLink to={link.to} key={link.to}>
             {link.label}
           </NavLink>
