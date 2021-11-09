@@ -10,4 +10,8 @@ export default defineConfig({
   },
   title: '个人博客',
   favicon: '/favicon.ico',
+  dva: {
+    immer: true,
+    hmr: true,
+  },
 });

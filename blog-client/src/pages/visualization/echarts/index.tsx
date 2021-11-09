@@ -1,5 +1,21 @@
-function echarts() {
-  return <div>echarts</div>;
+import { connect } from 'umi';
+
+function echarts(props: { update: (arg0: number) => void; user: any; }) {
+  const handleClick = () => {
+    props.update(111);
+    console.log(props.user);
+  };
+  return (
+    <div>
+      <button onClick={handleClick}>click</button>
+    </div>
+  );
 }
-echarts.vm = echarts;
-export default echarts;
+
+const mapStatetoprops = (state: { user: any; }) => ({
+  user: state.user
+});
+const actions = {
+  update: (payload: any) => ({ type: 'user/update', payload }),
+};
+export default connect(mapStatetoprops, actions)(echarts);
