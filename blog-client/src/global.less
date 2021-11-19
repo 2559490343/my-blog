@@ -5,6 +5,7 @@ body,
   height: 100%;
   box-sizing: content-box;
   overflow: hidden;
+  position: relative;
 }
 
 html,
@@ -38,7 +39,7 @@ button {
   margin: 0;
   outline-style: none;
 }
-/*ios系统中元素被触摸时产生的半透明灰色遮罩*/ 
+/*ios系统中元素被触摸时产生的半透明灰色遮罩*/
 a,
 button,
 input,
@@ -102,4 +103,12 @@ em,
 u {
   font-style: normal;
   text-decoration: none;
+}
+.xyc-model {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
 }
