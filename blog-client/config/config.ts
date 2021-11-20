@@ -3,7 +3,7 @@ import { defineConfig } from 'umi';
 export default defineConfig({
   proxy: {
     '/api': {
-      target: 'http://localhost:3000/',
+      target: 'https://joeschmoe.io/',
       changeOrigin: true,
       // 'pathRewrite': { '^/api' : '' },
     },
