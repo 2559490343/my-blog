@@ -1,8 +1,8 @@
-const setAction = () => {
+const setAction = (payload) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
-        username: 'aaa',
+        username: payload,
       });
     }, 2000);
   });

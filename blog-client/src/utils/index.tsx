@@ -7,7 +7,7 @@ import Loading from '@/components/Loading';
  * @param {any} value 存储的value值
  * @param {number} timeout 过期时间(h)
  */
-export const setStorage = (key, value, timeout = 1) => {
+export const setStorage = (key: string, value: any, timeout: number = 1) => {
   // 默认过期时间为1小时
   const outTime = timeout * 60 * 60 * 1000;
   if (localStorage.getItem(key)) {
@@ -23,7 +23,7 @@ export const setStorage = (key, value, timeout = 1) => {
   }
 };
 
-export const getStorage = (key) => {
+export const getStorage = (key: string) => {
   const obj = JSON.parse(
     localStorage.getItem(key) || '{ "value": null, "outDate": 0 }',
   );
@@ -34,7 +34,7 @@ export const getStorage = (key) => {
   };
 };
 
-export const removeStorage = (key) => {
+export const removeStorage = (key: string) => {
   localStorage.removeItem(key);
 };
 
@@ -50,7 +50,7 @@ export const loading = () => {
   style.bottom = '0px';
   style.left = '0px';
   style.right = '0px';
-  style.zIndex = 10000;
+  style.zIndex = '10000';
   style.backgroundColor = 'rgba(0,0,0,0.7)';
   document.body.appendChild(dom);
   ReactDOM.render(<Loading />, dom);
@@ -59,5 +59,5 @@ export const loading = () => {
  * 关闭全局loading
  */
 export const close = () => {
-  document.body.removeChild(document.getElementById('xyc-loading'));
+  document.body.removeChild(document.getElementById('xyc-loading') as Node);
 };

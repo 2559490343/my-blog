@@ -1,24 +1,25 @@
-import { loading, close } from './index.js';
+import { loading, close } from './index';
 import { message } from 'antd';
+import { RequestOptionsProps, ResultProps } from './types';
 
 let controller = new AbortController();
 let signal = controller.signal;
 export const request = async (
   method: string,
   url: string,
-  params = {},
-  options: any,
+  params: any = {},
+  options?: RequestOptionsProps,
 ) => {
   options = options || { headers: {}, dataType: 'json' };
   loading();
-  return new Promise((resolve, reject) => {
+  return new Promise<ResultProps>((resolve, reject) => {
     fetch(url, {
       method, //GET, POST, PUT, DELETE
       body: method === 'POST' ? JSON.stringify(params) : null,
       mode: 'cors', // no-cors, cors, *same-origin
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        ...options.headers,
+        ...options?.headers,
       },
       signal,
       // referrer: "about:client",
@@ -33,7 +34,7 @@ export const request = async (
       .then((response) => {
         const { ok, headers } = response;
         if (ok) {
-          const { dataType } = options;
+          let dataType = options?.dataType;
           let data = null;
           switch (dataType) {
             case 'json':
@@ -71,9 +72,11 @@ export const request = async (
         };
         const data = await body;
         close();
-        if (data.code !== 200) {
-          message.error(data.msg);
-          return reject();
+        if (options?.dataType === 'json') {
+          if (data.code !== 200) {
+            message.error(data.msg);
+            return reject();
+          }
         }
         resolve({
           data,
@@ -85,17 +88,30 @@ export const request = async (
         console.log('requestError---', err);
         message.error('服务器错误!');
         close();
-        reject(null);
+        reject(err);
       });
   });
 };
 
-export const get = (url: string, options?: any) => {
+export const get = (url: string, options?: RequestOptionsProps) => {
   return request('GET', url, {}, options);
 };
-
-export const post = (url: string, params: any, options: any) => {
+export const del = (url: string, options?: RequestOptionsProps) => {
+  return request('DELETE', url, {}, options);
+};
+export const post = (
+  url: string,
+  params: any,
+  options?: RequestOptionsProps,
+) => {
   return request('POST', url, params, options);
+};
+export const put = (
+  url: string,
+  params: any,
+  options?: RequestOptionsProps,
+) => {
+  return request('PUT', url, params, options);
 };
 
 /**
