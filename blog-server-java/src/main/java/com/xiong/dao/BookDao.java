@@ -21,8 +21,10 @@ public interface BookDao {
 
     Boolean update(Book book);
 
-    Boolean delete(Integer id);
+    @Select("delete from book where id=#{id}")
+    Boolean delete(@Param("id") Integer id);
 
-    Boolean insert(Book book);
+    @Select("insert into book (name,type,description) values (#{name},#{type},#{description})")
+    Boolean insert(@Param("name") String name, @Param("type") String type, @Param("description") String description);
 
 }

@@ -18,6 +18,14 @@ public class DataModel {
         return total;
     }
 
+    @Override
+    public String toString() {
+        return "DataModel{" +
+                "list=" + list +
+                ", total=" + total +
+                '}';
+    }
+
     public List getList() {
         return list;
     }

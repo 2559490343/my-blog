@@ -5,24 +5,22 @@ import org.springframework.stereotype.Component;
 @Component
 public class Result {
     private int code;
-    private DataModel data = new DataModel();
+    private Object data;
     private String msg;
 
-    public Result() {
 
+    public Result() {
     }
 
-    public Result(int code, String msg, DataModel data) {
-        this.code = code;
-        this.msg = msg;
-        this.data = data;
+    public Result(Object d) {
+        this.data = d;
     }
 
     public void setCode(int code) {
         this.code = code;
     }
 
-    public void setData(DataModel data) {
+    public void setData(Object data) {
         this.data = data;
     }
 
@@ -34,7 +32,7 @@ public class Result {
         return code;
     }
 
-    public DataModel getData() {
+    public Object getData() {
         return data;
     }
 

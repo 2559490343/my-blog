@@ -21,8 +21,8 @@ public class BookServiceImpl implements IBookService {
     }
 
     @Override
-    public Boolean insert(Book book) {
-        return bookDao.insert(book);
+    public void insert(Book book) {
+        bookDao.insert(book.getName(), book.getType(), book.getDescription());
     }
 
     @Override

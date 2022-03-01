@@ -7,7 +7,7 @@ import java.util.List;
 public interface IBookService {
     Boolean update(Book book);
 
-    Boolean insert(Book book);
+    void insert(Book book);
 
     Boolean delete(Integer id);
 
