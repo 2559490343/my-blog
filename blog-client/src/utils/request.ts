@@ -13,9 +13,10 @@ export const request = async (
   options = options || { headers: {}, dataType: 'json' };
   loading();
   return new Promise<ResultProps>((resolve, reject) => {
-    fetch(url, {
+    fetch('/api' + url, {
       method, //GET, POST, PUT, DELETE
-      body: method === 'POST' ? JSON.stringify(params) : null,
+      body:
+        method === 'POST' || method === 'PUT' ? JSON.stringify(params) : null,
       mode: 'cors', // no-cors, cors, *same-origin
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -32,6 +33,8 @@ export const request = async (
       // signal: undefined
     })
       .then((response) => {
+        console.log(response);
+
         const { ok, headers } = response;
         if (ok) {
           let dataType = options?.dataType;
@@ -60,7 +63,6 @@ export const request = async (
           };
         } else {
           close();
-          message.error('网络错误!');
           return reject();
         }
       })

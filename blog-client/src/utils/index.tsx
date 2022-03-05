@@ -59,5 +59,6 @@ export const loading = () => {
  * 关闭全局loading
  */
 export const close = () => {
-  document.body.removeChild(document.getElementById('xyc-loading') as Node);
+  const loadingEl = document.getElementById('xyc-loading');
+  loadingEl && document.body.removeChild(loadingEl as Node);
 };
