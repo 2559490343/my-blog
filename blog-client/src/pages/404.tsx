@@ -1,8 +1,4 @@
+import React from 'react';
+import Exception from '@/components/Exception/Exception';
 
-export default function Unfound() {
-  return (
-    <div>
-      404
-    </div>
-  )
-}
+export default () => <Exception type={404} />;

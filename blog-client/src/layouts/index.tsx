@@ -1,18 +1,16 @@
 import Header from './components/header';
-import Aside from './components/aside';
 import Main from './components/main';
-import Write from '@/components/write';
 import styles from './index.less';
+import React, { HTMLAttributes } from 'react';
 
-export default function Layouts(props: any) {
+const Layouts: React.FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   return (
-    <div className={styles.layouts}>
+    <div className={styles.root}>
       <Header />
-      <section>
-        <Aside />
+      <section className={styles.section}>
         <Main>{props.children}</Main>
       </section>
-      <Write />
     </div>
   );
-}
+};
+export default Layouts;

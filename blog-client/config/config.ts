@@ -14,4 +14,7 @@ export default defineConfig({
     immer: true,
     hmr: true,
   },
+  nodeModulesTransform: {
+    type: 'none',
+  },
 });

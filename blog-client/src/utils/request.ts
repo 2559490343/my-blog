@@ -1,9 +1,28 @@
 import { loading, close } from './index';
 import { message } from 'antd';
 import { RequestOptionsProps, ResultProps } from './types';
+import qs from 'querystring';
 
 let controller = new AbortController();
 let signal = controller.signal;
+const prefixUrl = '/api';
+const parseRequest = (url: string, method: string, params: any) => {
+  let body = null,
+    _url = prefixUrl + url;
+  switch (method) {
+    case 'GET':
+    case 'DELETE':
+      _url = `${_url}?${qs.stringify(params)}`;
+      return [_url, body];
+    case 'POST':
+    case 'PUT':
+      body = JSON.stringify(params);
+      return [url, body];
+    default:
+      return [url, null];
+  }
+};
+
 export const request = async (
   method: string,
   url: string,
@@ -12,11 +31,11 @@ export const request = async (
 ) => {
   options = options || { headers: {}, dataType: 'json' };
   loading();
+  const [requestUrl, requestBody] = parseRequest(url, method, params);
   return new Promise<ResultProps>((resolve, reject) => {
-    fetch('/api' + url, {
+    fetch(requestUrl || '', {
       method, //GET, POST, PUT, DELETE
-      body:
-        method === 'POST' || method === 'PUT' ? JSON.stringify(params) : null,
+      body: requestBody,
       mode: 'cors', // no-cors, cors, *same-origin
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -95,25 +114,25 @@ export const request = async (
   });
 };
 
-export const get = (url: string, options?: RequestOptionsProps) => {
-  return request('GET', url, {}, options);
+export const get = (url: string, data?: any, options?: RequestOptionsProps) => {
+  return request('GET', url, data || {}, options);
 };
-export const del = (url: string, options?: RequestOptionsProps) => {
-  return request('DELETE', url, {}, options);
+export const del = (url: string, data?: any, options?: RequestOptionsProps) => {
+  return request('DELETE', url, data || {}, options);
 };
 export const post = (
   url: string,
   params: any,
   options?: RequestOptionsProps,
 ) => {
-  return request('POST', url, params, options);
+  return request('POST', url, params || {}, options);
 };
 export const put = (
   url: string,
   params: any,
   options?: RequestOptionsProps,
 ) => {
-  return request('PUT', url, params, options);
+  return request('PUT', url, params || {}, options);
 };
 
 /**

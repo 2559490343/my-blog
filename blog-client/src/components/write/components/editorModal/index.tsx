@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Modal, Form } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import EditorFooter from '../editorFooter';
-import { Editor } from '@/components/bytemd';
 import EditorForm from '../editorForm';
+import styles from './index.less';
 
 export default function EditorModal(props: {
   visible: boolean;
@@ -20,7 +20,7 @@ export default function EditorModal(props: {
   // 取消钩子
   const handleCancel = () => {
     Modal.confirm({
-      title: 'Confirm',
+      title: '提示',
       icon: <ExclamationCircleOutlined />,
       content: '关闭弹窗后将您写的内容将不会被保存，您确定要关闭吗？',
       okText: '确认',
@@ -41,7 +41,7 @@ export default function EditorModal(props: {
   return (
     <Modal
       visible={visible}
-      className="write-editor"
+      className={styles.writeEditor}
       maskClosable={false}
       closable={false}
       style={{ height: '95%' }}
@@ -55,11 +55,11 @@ export default function EditorModal(props: {
         />
       }
     >
-      <div className="editor-header">
+      <div className={styles.editorHeader}>
         <EditorForm editorForm={editorForm} />
       </div>
-      <div className="editor-box">
-        <Editor value={editorValue} setValue={setEditorValue} />
+      <div className={styles.editorBox}>
+        {/* <Editor value={editorValue} setValue={setEditorValue} /> */}
       </div>
     </Modal>
   );

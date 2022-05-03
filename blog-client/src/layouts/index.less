@@ -1,14 +1,16 @@
-.layouts {
+.root {
   width: 100%;
   height: 100%;
-  // background-color: #1d1f2c;
-  background-color: #000;
+  background: url(../assets/images/baseBackground.png);
+  background-repeat: no-repeat;
+  background-size: cover;
   color: #fff;
   display: flex;
   flex-direction: column;
-  section {
-    display: flex;
-    flex: 1;
+  .section {
     padding: 20px 0 10px;
+    overflow: auto;
+    flex: 1;
+    height: 0;
   }
 }
