@@ -12,6 +12,7 @@
     "strict": true,
     "paths": {
       "@/*": ["src/*"],
+      "~/*": ["src/ppComponents/*"],
       "@@/*": ["src/.umi/*"]
     },
     "allowSyntheticDefaultImports": true

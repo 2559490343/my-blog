@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <g stroke="red" stroke-width="3" transform="translate(60,60)">
+    <circle cx="30" cy="30" r="50" fill="transparent" />
+    <circle cx="30" cy="30" r="40" fill="transparent" />
+    <circle cx="30" cy="30" r="30" fill="transparent" />
+    <circle cx="30" cy="30" r="20" fill="transparent" />
+    <circle cx="30" cy="30" r="10" fill="transparent" />
+  </g>
+  <g>
+    <text x="200" y="100" fill="red">4542554</text>
+  </g>
+  <g>
+    <polyline points="220,100 250,100 250,130 300,130" stroke="red" fill="none" stroke-width="3" />
+  </g>
+</svg>

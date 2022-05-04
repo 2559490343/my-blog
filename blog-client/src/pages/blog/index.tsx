@@ -3,7 +3,7 @@ import Write from '@/components/write';
 import { loading, close } from '@/utils';
 import React, { useEffect, useState } from 'react';
 import styles from './index.less';
-import { BlogProps } from './types';
+import { BlogProps } from '@/components/commonList/types';
 
 const Blog = () => {
   const [listData, setListData] = useState<Array<BlogProps>>([]);
@@ -11,7 +11,7 @@ const Blog = () => {
     console.log(row);
   };
   useEffect(() => {
-    loading();
+    // loading();
     setTimeout(() => {
       setListData([
         {
@@ -33,7 +33,7 @@ const Blog = () => {
           collectionCount: 1,
         },
       ]);
-      close();
+      // close();
     }, 2000);
   }, []);
   return (

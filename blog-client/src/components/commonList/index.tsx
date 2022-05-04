@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.less';
 
-export default function CommonList(props: any) {
+const CommonList = (props: any) => {
   const { listData, onRowClick } = props;
 
   return (
@@ -54,4 +54,5 @@ export default function CommonList(props: any) {
       })}
     </div>
   );
-}
+};
+export default CommonList;
