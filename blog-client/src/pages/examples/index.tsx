@@ -1,11 +1,11 @@
+import PPLoading from '@/ppComponents/Icon/icons/PPLoading';
 import React from 'react';
 import styles from './index.less';
-import Icon from '~/ppIcons/icon';
 
 const Examples = () => {
   return (
     <div className={styles.root}>
-      <Icon />
+      <PPLoading />
     </div>
   );
 };

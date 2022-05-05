@@ -8,7 +8,7 @@ export default defineConfig({
       pathRewrite: { '^/api': '' },
     },
   },
-  title: '个人博客',
+  title: '皮皮博客',
   favicon: '/favicon.ico',
   dva: {
     immer: true,
@@ -20,9 +20,9 @@ export default defineConfig({
   alias: {
     '~': '/src/ppComponents',
   },
-  chainWebpack(memo) {
+  chainWebpack(config) {
     // 修改less-loader的css-modules的配置，添加文件名作为前缀
-    memo.module
+    config.module
       .rule('less')
       .oneOf('css-modules')
       .use('css-loader')
