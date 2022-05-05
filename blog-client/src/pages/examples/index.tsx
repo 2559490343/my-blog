@@ -1,12 +1,6 @@
-import PPLoading from '@/ppComponents/Icon/icons/PPLoading';
-import React from 'react';
-import styles from './index.less';
+import { Redirect } from 'umi';
 
-const Examples = () => {
-  return (
-    <div className={styles.root}>
-      <PPLoading />
-    </div>
-  );
-};
-export default Examples;
+export default function IndexPage() {
+  return <Redirect to="/examples/icon" />;
+}
+

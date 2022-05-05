@@ -5,10 +5,19 @@ import cn from 'classnames';
 interface BaseIconProps extends HTMLAttributes<HTMLSpanElement> {}
 
 const BaseIcon: React.FC<BaseIconProps> = (props) => {
-  const { children, className } = props;
+  const { children, className, ...restProps } = props;
+
   return (
     <span className={cn(styles.ppIcon, className)} role="img">
-      {children}
+      {React.Children.map(children, (child: any) => {
+        return React.cloneElement(child, {
+          stroke: 'currentColor',
+          fill: 'none',
+          // transform: `scale(1 1)`,
+          viewBox: '0,0,40,40',
+          ...restProps,
+        });
+      })}
     </span>
   );
 };

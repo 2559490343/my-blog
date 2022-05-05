@@ -20,3 +20,5 @@
 /blog-client/src/.umi-production
 /blog-client/src/.umi-test
 /blog-client/.env.local
+/blog-client/.voscode
+blog-client/.vscode/settings.json
