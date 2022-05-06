@@ -1,5 +1,7 @@
 import ReactDOM from 'react-dom';
 import Loading from '@/components/Loading';
+// @ts-ignore
+import icons from '@/utils/getAllIcons';
 
 /**
  * 封装一个有过期时间的localstorage存储
@@ -63,4 +65,12 @@ export const close = () => {
   loadingEl && document.body.removeChild(loadingEl as Node);
 };
 
-// export const getDirs
+/**
+ * 获取所有icons目录
+ */
+export const getAllIcons = () => {
+  return Object.keys(icons).map((name) => ({
+    name,
+    component: icons[name],
+  }));
+};

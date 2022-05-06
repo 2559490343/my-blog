@@ -1,23 +1,10 @@
+import { getAllIcons } from '@/utils';
 import { message } from 'antd';
 import React from 'react';
 import styles from './Icon.less';
 
 const Icon = () => {
-  const iconList = [
-    {
-      name: 'PPLoading',
-    },
-    {
-      name: 'PPLoading3Q',
-    },
-    {
-      name: 'StepBackward',
-    },
-    {
-      name: 'StepForward',
-    },
-  ];
-
+  const iconList = getAllIcons();
   // 复制对应名称的icon组件
   const copyIcon = (name: string) => {
     const componentName = `<${name} />`;
@@ -27,8 +14,9 @@ const Icon = () => {
   };
 
   // 根据icon名称动态引入对应icon组件
-  const renderIconComponent = (name: string) => {
-    const Icon = require(`~/Icon/icons/${name}`).default;
+  const renderIconComponent = (component: React.FC<any>) => {
+    // const Icon = require(`~/Icon/icons/${name}`).default;
+    const Icon = component;
     return <Icon />;
   };
 
@@ -42,7 +30,7 @@ const Icon = () => {
             key={icon.name}
           >
             <div className={styles.iconInner}>
-              {renderIconComponent(icon.name)}
+              {renderIconComponent(icon.component)}
             </div>
             <div className={styles.iconText}>{icon.name}</div>
           </li>
