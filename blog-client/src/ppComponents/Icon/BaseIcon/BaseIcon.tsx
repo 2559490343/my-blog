@@ -12,6 +12,7 @@ const BaseIcon: React.FC<BaseIconProps> = (props) => {
       {React.Children.map(children, (child: any) => {
         return React.cloneElement(child, {
           stroke: 'currentColor',
+          strokeWidth: '3',
           fill: 'none',
           // transform: `scale(1 1)`,
           viewBox: '0,0,40,40',

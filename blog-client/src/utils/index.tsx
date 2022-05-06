@@ -62,3 +62,5 @@ export const close = () => {
   const loadingEl = document.getElementById('xyc-loading');
   loadingEl && document.body.removeChild(loadingEl as Node);
 };
+
+// export const getDirs

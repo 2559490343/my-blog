@@ -1,2 +1,33 @@
-.root{
+@import url(/config/variable.less);
+.root {
+  .iconBox {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    .iconItem {
+      width: 200px;
+      height: 100px;
+      text-align: center;
+      border-radius: @border-radius;
+      margin-bottom: 8px;
+      cursor: pointer;
+      &:hover {
+        background-color: @primary-color;
+        .iconInner {
+          transform: scale(1.2);
+        }
+        .iconText {
+          color: #fff;
+        }
+      }
+      .iconInner {
+        font-size: 36px;
+        margin-top: 8px;
+        transition: all 0.5s;
+      }
+      .iconText {
+        color: #acacac;
+      }
+    }
+  }
 }
