@@ -1,3 +1,3 @@
 <svg xmlns="http://www.w3.org/2000/svg" id="svg-stepForward">
-  <path id="path-stepForward" d="M3,2L28,20L3,38zM31,2V39" fill="currentColor" stroke-width="3" />
+  <path id="path-stepForward" d="M3,2L23,20L3,37zM26,1V39" fill="currentColor" stroke-width="3" />
 </svg>

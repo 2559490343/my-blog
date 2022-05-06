@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './PPLoading.less';
+import styles from './Loading.less';
 import { ReactComponent as LoadingIcon } from '../../svgs/loading.svg';
 import BaseIcon from '../../BaseIcon';
 const PPLoading = () => {
