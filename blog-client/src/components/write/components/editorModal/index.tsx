@@ -4,19 +4,21 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import EditorFooter from '../editorFooter';
 import EditorForm from '../editorForm';
 import styles from './index.less';
+import Editor from '../Editor';
+import BraftEditor from 'braft-editor';
 
 export default function EditorModal(props: {
   visible: boolean;
   setVisible: (val: boolean) => void;
 }) {
-  const { visible, setVisible } = props;
   // 编辑文章弹窗的visible
+  const { visible, setVisible } = props;
   // editor绑定的value值
-  const [editorValue, setEditorValue] = useState('');
+  const [editorValue, setEditorValue] = useState(
+    BraftEditor.createEditorState(''),
+  );
   // form表单实例
   const [editorForm] = Form.useForm();
-  // 保存钩子
-  const handleSave = () => {};
   // 取消钩子
   const handleCancel = () => {
     Modal.confirm({
@@ -36,30 +38,32 @@ export default function EditorModal(props: {
   // 初始化数据所有数据
   const initData = () => {
     editorForm.resetFields();
-    setEditorValue('');
+    setEditorValue(BraftEditor.createEditorState(''));
   };
+
+  const handleSubmit = () => {
+    console.log(editorValue.toHTML());
+    editorForm.validateFields().then((values) => {
+      console.log(values);
+    });
+  };
+
   return (
     <Modal
       visible={visible}
       className={styles.writeEditor}
       maskClosable={false}
       closable={false}
-      style={{ height: '95%' }}
-      getContainer={'#editor-container'}
-      width="80%"
+      width="70%"
       footer={
-        <EditorFooter
-          handleCancel={handleCancel}
-          handleSave={handleSave}
-          handleSubmit={editorForm.submit}
-        />
+        <EditorFooter handleCancel={handleCancel} handleSubmit={handleSubmit} />
       }
     >
       <div className={styles.editorHeader}>
         <EditorForm editorForm={editorForm} />
       </div>
       <div className={styles.editorBox}>
-        {/* <Editor value={editorValue} setValue={setEditorValue} /> */}
+        <Editor editorValue={editorValue} setEditorValue={setEditorValue} />
       </div>
     </Modal>
   );
