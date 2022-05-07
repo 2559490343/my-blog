@@ -43,9 +43,9 @@ export const removeStorage = (key: string) => {
 /**
  * 封装通用的全局loading组件，调用此方法打开loading效果
  */
-export const loading = () => {
+export const showLoading = () => {
   const dom = document.createElement('div');
-  dom.setAttribute('id', 'xyc-loading');
+  dom.setAttribute('id', 'pp-loading');
   const style = dom.style;
   style.position = 'absolute';
   style.top = '0px';
@@ -60,8 +60,8 @@ export const loading = () => {
 /**
  * 关闭全局loading
  */
-export const close = () => {
-  const loadingEl = document.getElementById('xyc-loading');
+export const hideLoading = () => {
+  const loadingEl = document.getElementById('pp-loading');
   loadingEl && document.body.removeChild(loadingEl as Node);
 };
 

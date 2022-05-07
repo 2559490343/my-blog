@@ -1,6 +1,5 @@
 import CommonList from '@/components/commonList';
 import Write from '@/components/write';
-import { loading, close } from '@/utils';
 import React, { useEffect, useState } from 'react';
 import styles from './Blog.less';
 import { BlogProps } from '@/components/commonList/types';
@@ -11,7 +10,6 @@ const Blog = () => {
     console.log(row);
   };
   useEffect(() => {
-    // loading();
     setTimeout(() => {
       setListData([
         {
@@ -33,7 +31,6 @@ const Blog = () => {
           collectionCount: 1,
         },
       ]);
-      // close();
     }, 2000);
   }, []);
   return (
