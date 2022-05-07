@@ -1,0 +1,5 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <!-- <path d="M0,0a16,16,0,1,1,32,16M32,16A16,16,0,1,1,0,0M9,10L16,13L22,3M21,3L16,2L10,10" transform="translate(4,12)" /> -->
+  <circle cx="19" cy="17" r="16" fill='#49aa19'/>
+  <polyline points="9,10 16,13 22,3" />
+</svg>
