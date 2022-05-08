@@ -1,0 +1,35 @@
+@import url(/config/variable.less);
+.root {
+  display: flex;
+  width: 1200px;
+  padding-top: 40px;
+  margin: 0 auto;
+  height: 1000px;
+  .leftTools {
+    position: fixed;
+    left: 50px;
+    top: 100px;
+  }
+  .container {
+    flex: 1;
+    min-width: 800px;
+    margin-right: 20px;
+    background-color: #00000099;
+    border-radius: @border-radius;
+    padding: 20px;
+    .header{
+      .title{
+        margin-bottom: 8px;
+      }
+      .articleInfo{
+        font-size: 14px;
+      }
+    }
+  }
+  .rightInfo {
+    width: 300px;
+    background-color: #00000099;
+    border-radius: @border-radius;
+    padding: 20px;
+  }
+}
