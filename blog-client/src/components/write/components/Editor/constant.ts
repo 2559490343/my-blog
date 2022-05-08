@@ -11,8 +11,8 @@ import 'braft-editor/dist/index.css';
 import 'braft-extensions/dist/code-highlighter.css';
 // 首先需要从prismjs中引入需要扩展的语言库
 import 'prismjs/components/prism-java';
-import 'prismjs/components/prism-php';
 import 'prismjs/components/prism-go';
+import 'prismjs/components/prism-markup';
 
 // 转换默认表情包列表，让webpack可以正确加载到默认表情包中的图片，请确保已对png格式的文件配置了loader
 const emoticons = defaultEmoticons.map((item) =>
@@ -41,12 +41,12 @@ const options = {
       syntax: 'java',
     },
     {
-      name: 'PHP',
-      syntax: 'php',
-    },
-    {
       name: 'GO',
       syntax: 'go',
+    },
+    {
+      name: 'MarkUp',
+      syntax: 'markup',
     },
   ],
 };

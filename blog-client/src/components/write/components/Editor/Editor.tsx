@@ -2,6 +2,8 @@ import styles from './Editor.less';
 import BraftEditor, { EditorState, ExtendControlType } from 'braft-editor';
 import { EyeOutlined } from '@ant-design/icons';
 import { registerPlugins } from './constant';
+import { useBoolean } from 'ahooks';
+import Previewer from '@/components/Previewer';
 
 registerPlugins(BraftEditor);
 
@@ -11,12 +13,13 @@ interface EditorProps {
 }
 const Editor: React.FC<EditorProps> = (props) => {
   const { editorValue, setEditorValue } = props;
+  const [showPreview, { toggle }] = useBoolean(false);
   const handleEditorChange = (editorState: EditorState) => {
     setEditorValue(editorState);
   };
 
   const handlePreview = () => {
-    console.log(editorValue.toHTML());
+    toggle();
   };
   const extendControls: ExtendControlType[] = [
     {
@@ -34,7 +37,13 @@ const Editor: React.FC<EditorProps> = (props) => {
         onChange={handleEditorChange}
         placeholder="请输入文章内容"
         extendControls={extendControls}
+        className={styles.editor}
       />
+      {showPreview && (
+        <div className={styles.previewBox}>
+          <Previewer contentValue={editorValue.toHTML()} />
+        </div>
+      )}
     </div>
   );
 };
