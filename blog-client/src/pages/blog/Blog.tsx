@@ -12,6 +12,7 @@ const Blog = () => {
     history.push('/blog/blog-detail');
   };
   useEffect(() => {
+    React.showLoading();
     setTimeout(() => {
       setListData([
         {
@@ -33,6 +34,7 @@ const Blog = () => {
           collectionCount: 1,
         },
       ]);
+      React.hideLoading();
     }, 2000);
   }, []);
   return (

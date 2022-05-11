@@ -8,3 +8,9 @@ declare module '*.svg' {
   const url: string;
   export default url;
 }
+
+// 给React声明全局自定义属性
+declare namespace React {
+  let showLoading: () => void;
+  let hideLoading: () => void;
+}

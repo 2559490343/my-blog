@@ -19,6 +19,7 @@ export default defineConfig({
   },
   alias: {
     '~': '/src/ppComponents',
+    '~icons': '/src/ppComponents/Icon/icons',
   },
   chainWebpack(config) {
     // 修改less-loader的css-modules的配置，添加文件名作为前缀
