@@ -8,10 +8,13 @@ import {
   StarFilled,
   UnorderedListOutlined,
 } from '@ant-design/icons';
-import { Avatar, Button, Rate, Comment } from 'antd';
+import { Avatar, Button, Rate, Comment, Tooltip } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import React from 'react';
+import moment from 'moment';
+import cn from 'classnames';
 import styles from './BlogDetail.less';
+import { useBoolean } from 'ahooks';
 
 const BlogDetail = () => {
   const ExampleComment = (props: any) => {
@@ -20,6 +23,13 @@ const BlogDetail = () => {
       <Comment
         actions={[<span key="comment-nested-reply-to">Reply to</span>]}
         author={<a>Han Solo</a>}
+        datetime={
+          <Tooltip
+            title={moment().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')}
+          >
+            <span>{moment().subtract(1, 'days').fromNow()}</span>
+          </Tooltip>
+        }
         avatar={
           <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
         }
@@ -35,36 +45,54 @@ const BlogDetail = () => {
     );
   };
 
+  const [hasLike, { set }] = useBoolean(false);
+  const [hasCollection, { toggle }] = useBoolean(false);
+
+  const handleLike = () => {
+    set(!hasLike);
+  };
+  const handleCollection = () => {
+    toggle();
+  };
+
   return (
     <div className={styles.root}>
       <div className={styles.leftTools}>
         <ul className={styles.toolBox}>
           <li className={styles.toolItem}>
-            <div className={styles.toolIcon}>
+            <div className={cn(styles.toolIcon)}>
               <UnorderedListOutlined />
             </div>
             <div className={styles.toolText}>目录</div>
           </li>
           <li className={styles.toolItem}>
-            <div className={styles.toolIcon}>
+            <div
+              className={cn(styles.toolIcon, { [styles.active]: hasLike })}
+              onClick={handleLike}
+            >
               <LikeFilled />
             </div>
             <div className={styles.toolText}>赞</div>
           </li>
           <li className={styles.toolItem}>
-            <div className={styles.toolIcon}>
+            <div
+              className={cn(styles.toolIcon, {
+                [styles.active]: hasCollection,
+              })}
+              onClick={handleCollection}
+            >
               <StarFilled />
             </div>
             <div className={styles.toolText}>收藏</div>
           </li>
           <li className={styles.toolItem}>
-            <div className={styles.toolIcon}>
+            <div className={cn(styles.toolIcon)}>
               <MessageFilled />
             </div>
             <div className={styles.toolText}>评论</div>
           </li>
           <li className={styles.toolItem}>
-            <div className={styles.toolIcon}>
+            <div className={cn(styles.toolIcon)}>
               <ShareAltOutlined />
             </div>
             <div className={styles.toolText}>分享</div>
@@ -104,7 +132,9 @@ const BlogDetail = () => {
           </div>
           <div className={styles.comments}>
             <div className={styles.title}>
-              <p>全部评论 <span>(2)</span></p>
+              <p>
+                全部评论 <span>(2)</span>
+              </p>
             </div>
             <div className={styles.commentList}>
               <ExampleComment>

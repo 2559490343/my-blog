@@ -30,6 +30,9 @@
             transform: scale(1.1);
           }
         }
+        .toolIcon.active{
+          color: #fadb14;
+        }
       }
     }
   }
@@ -89,6 +92,18 @@
           }
           span {
             color: #999;
+          }
+        }
+        .commentList {
+          color: #fff;
+          :global {
+            .ant-comment-content-author-name,
+            .ant-comment-actions {
+              a,
+              span {
+                color: #fff;
+              }
+            }
           }
         }
       }

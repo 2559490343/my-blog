@@ -41,6 +41,7 @@
     "braft-extensions": "^0.1.1",
     "bytemd": "^1.10.13",
     "draft-js-prism": "^1.0.6",
+    "moment": "^2.29.3",
     "prismjs": "^1.28.0",
     "qs": "^6.10.3",
     "react": "17.x",
