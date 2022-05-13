@@ -16,35 +16,34 @@ import cn from 'classnames';
 import styles from './BlogDetail.less';
 import { useBoolean } from 'ahooks';
 
+const ExampleComment = (props: any) => {
+  const { children } = props;
+  return (
+    <Comment
+      actions={[<span key="comment-nested-reply-to">Reply to</span>]}
+      author={<a>Han Solo</a>}
+      datetime={
+        <Tooltip
+          title={moment().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')}
+        >
+          <span>{moment().subtract(1, 'days').fromNow()}</span>
+        </Tooltip>
+      }
+      avatar={
+        <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
+      }
+      content={
+        <p>
+          We supply a series of design principles, practical patterns and high
+          quality design resources (Sketch and Axure).
+        </p>
+      }
+    >
+      {children}
+    </Comment>
+  );
+};
 const BlogDetail = () => {
-  const ExampleComment = (props: any) => {
-    const { children } = props;
-    return (
-      <Comment
-        actions={[<span key="comment-nested-reply-to">Reply to</span>]}
-        author={<a>Han Solo</a>}
-        datetime={
-          <Tooltip
-            title={moment().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')}
-          >
-            <span>{moment().subtract(1, 'days').fromNow()}</span>
-          </Tooltip>
-        }
-        avatar={
-          <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
-        }
-        content={
-          <p>
-            We supply a series of design principles, practical patterns and high
-            quality design resources (Sketch and Axure).
-          </p>
-        }
-      >
-        {children}
-      </Comment>
-    );
-  };
-
   const [hasLike, { set }] = useBoolean(false);
   const [hasCollection, { toggle }] = useBoolean(false);
 
@@ -104,8 +103,11 @@ const BlogDetail = () => {
           <div className={styles.header}>
             <h1 className={styles.title}>【完虐算法】字符串 - 滑动窗口专题 </h1>
             <div className={styles.articleInfo}>
-              推荐指数: <Rate allowHalf defaultValue={2.5} disabled />
-              Johngo学长2021-11-05 17:18:26
+              <span className={styles.infoItem}>
+                推荐指数: <Rate allowHalf defaultValue={2.5} disabled />
+              </span>
+              <span className={styles.infoAuthor}>Johngo学长</span>
+              <span>2021-11-05 17:18:26</span>
             </div>
           </div>
           <div className={styles.articleContent}>

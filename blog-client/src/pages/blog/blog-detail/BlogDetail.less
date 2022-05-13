@@ -30,7 +30,7 @@
             transform: scale(1.1);
           }
         }
-        .toolIcon.active{
+        .toolIcon.active {
           color: #fadb14;
         }
       }
@@ -53,6 +53,16 @@
         }
         .articleInfo {
           font-size: 14px;
+          .infoItem,
+          .infoAuthor {
+            margin-right: 16px;
+          }
+          .infoAuthor {
+            cursor: pointer;
+            &:hover {
+              color: @primary-color;
+            }
+          }
         }
       }
     }
