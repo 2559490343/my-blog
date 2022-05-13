@@ -1,2 +1,72 @@
-.root{
+@import url(/config/variable.less);
+.pp-btn {
+  padding: 4px 15px;
+  background-color: transparent;
+  border: 1px solid #d9d9d9;
+  cursor: pointer;
+  border-radius: 2px;
+  line-height: 1.3;
+  margin-right: 8px;
+  margin-bottom: 12px;
+  transition: all 0.3s;
+  .pp-btn-icon {
+    margin-right: 8px;
+  }
+  .pp-btn-children {
+    display: inline-block;
+  }
+  &:hover {
+    border-color: @primary-color;
+    color: @primary-color;
+  }
+}
+.pp-btn.pp-btn-type-primary {
+  background-color: @primary-color;
+  border-color: @primary-color;
+  color: #fff;
+  &:hover {
+    background-color: #095cb5;
+    border-color: #095cb5;
+  }
+}
+.pp-btn.pp-btn-type-dashed {
+  border-style: dashed;
+}
+.pp-btn.pp-btn-type-link {
+  background-color: transparent;
+  border: 0;
+}
+.pp-btn.pp-btn-size-large {
+  padding: 7px 16px;
+  font-size: 18px;
+}
+.pp-btn.pp-btn-size-small {
+  font-size: 14px;
+}
+.pp-btn.pp-btn-shape-round {
+  border-radius: 30px;
+}
+.pp-btn.pp-btn-disabled {
+  color: rgba(255, 255, 255, 0.3);
+  border-color: #434343;
+  background: rgba(255, 255, 255, 0.08);
+  text-shadow: none;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.pp-btn.pp-btn-loading {
+  text-shadow: none;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.pp-btn.pp-btn-loading.pp-btn-type-primary {
+  background-color: #095cb5;
+  border-color: #095cb5;
+}
+.pp-btn.pp-btn-loading.pp-btn-type-dashed,
+.pp-btn.pp-btn-loading.pp-btn-type-default,
+.pp-btn.pp-btn-loading.pp-btn-type-link {
+  color: rgba(255, 255, 255, 0.3);
+  border-color: #434343;
+  background: rgba(255, 255, 255, 0.08);
 }
