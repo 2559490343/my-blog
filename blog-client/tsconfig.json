@@ -13,7 +13,8 @@
     "paths": {
       "@/*": ["src/*"],
       "~/*": ["src/ppComponents/*"],
-      "@@/*": ["src/.umi/*"]
+      "@@/*": ["src/.umi/*"],
+      "~icons/*":["src/ppComponents/Icon/icons/*"]
     },
     "allowSyntheticDefaultImports": true
   },

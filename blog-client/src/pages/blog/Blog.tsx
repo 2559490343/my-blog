@@ -3,11 +3,13 @@ import Write from '@/components/write';
 import React, { useEffect, useState } from 'react';
 import styles from './Blog.less';
 import { BlogProps } from '@/components/commonList/types';
+import { history } from 'umi';
 
 const Blog = () => {
   const [listData, setListData] = useState<Array<BlogProps>>([]);
   const onRowClick = (row: BlogProps) => {
     console.log(row);
+    history.push('/blog/blog-detail');
   };
   useEffect(() => {
     setTimeout(() => {
@@ -31,7 +33,7 @@ const Blog = () => {
           collectionCount: 1,
         },
       ]);
-    }, 2000);
+    }, 0);
   }, []);
   return (
     <div className={styles.root}>

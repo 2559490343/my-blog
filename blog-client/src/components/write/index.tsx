@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { EditFilled } from '@ant-design/icons';
 import EditorModal from './components/editorModal';
 import { Tooltip } from 'antd';
-import styles from  './index.less';
+import styles from './index.less';
 
 const Write = () => {
   // 编辑文章弹窗的visible

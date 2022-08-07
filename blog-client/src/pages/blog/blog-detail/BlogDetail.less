@@ -1,0 +1,181 @@
+@import url(/config/variable.less);
+.root {
+  display: flex;
+  width: 1200px;
+  padding: 40px 0;
+  margin: 0 auto;
+  height: 1000px;
+  .leftTools {
+    position: fixed;
+    left: 230px;
+    top: 130px;
+    .toolBox {
+      .toolItem {
+        color: #999;
+        text-align: center;
+        margin-bottom: 24px;
+        .toolIcon {
+          width: 50px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #2c2c2c;
+          border-radius: 50%;
+          cursor: pointer;
+          transition: all 0.3s;
+          margin-bottom: 8px;
+          font-size: 23px;
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+        .toolIcon.active {
+          color: #fadb14;
+        }
+      }
+    }
+  }
+  .midBox {
+    height: 100%;
+    flex: 1;
+    min-width: 800px;
+    margin-right: 20px;
+    .container {
+      background-color: #00000088;
+      border-radius: @border-radius;
+      padding: 20px;
+      min-height: 500px;
+      box-shadow: @box-shadow;
+      .header {
+        .title {
+          margin-bottom: 8px;
+        }
+        .articleInfo {
+          font-size: 14px;
+          .infoItem,
+          .infoAuthor {
+            margin-right: 16px;
+          }
+          .infoAuthor {
+            cursor: pointer;
+            &:hover {
+              color: @primary-color;
+            }
+          }
+        }
+      }
+    }
+    .commentBox {
+      padding: 30px;
+      background-color: #00000088;
+      border-radius: @border-radius;
+      box-shadow: @box-shadow;
+      margin-top: 30px;
+      .inputBox {
+        .inputRow {
+          display: flex;
+          margin-bottom: 10px;
+        }
+        .btnRow {
+          text-align: right;
+          .btn {
+            height: 35px;
+            padding: 5px 32px;
+            background-color: #3e71f6;
+            border: none;
+            color: #fff;
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+        }
+      }
+      .comments {
+        .title {
+          font-size: 20px;
+          line-height: 57px;
+          border-bottom: 1px solid #f5f5f5;
+          margin-bottom: 25px;
+          p {
+            font-weight: 600;
+          }
+          span {
+            color: #999;
+          }
+        }
+        .commentList {
+          color: #fff;
+          :global {
+            .ant-comment-content-author-name,
+            .ant-comment-actions {
+              a,
+              span {
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .rightInfo {
+    width: 300px;
+    height: fit-content;
+    background-color: #00000088;
+    border-radius: @border-radius;
+    padding: 20px;
+    box-shadow: @box-shadow;
+    text-align: center;
+    .userInfo {
+      .avatar,
+      .userName {
+        cursor: pointer;
+      }
+      .userName {
+        margin: 13px 0 25px;
+        line-height: 22px;
+      }
+    }
+    .counts {
+      display: flex;
+      margin-bottom: 30px;
+      .countItem {
+        flex: 1;
+        cursor: pointer;
+        &:hover {
+          color: @primary-color;
+        }
+        .num {
+          font-size: 18px;
+          line-height: 22px;
+          margin-bottom: 8px;
+        }
+        .text {
+          font-size: 12px;
+          line-height: 14px;
+        }
+      }
+    }
+    .btns {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      .btn {
+        height: 35px;
+        padding: 5px 32px;
+        &:first-of-type {
+          background-color: #3e71f6;
+          border: none;
+          color: #fff;
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+        &:last-of-type {
+          color: #789bf9;
+        }
+      }
+    }
+  }
+}
