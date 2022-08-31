@@ -46,14 +46,6 @@ export const removeStorage = (key: string) => {
 export const showLoading = () => {
   const dom = document.createElement('div');
   dom.setAttribute('id', 'pp-loading');
-  const style = dom.style;
-  style.position = 'absolute';
-  style.top = '0px';
-  style.bottom = '0px';
-  style.left = '0px';
-  style.right = '0px';
-  style.zIndex = '10000';
-  style.backgroundColor = 'rgba(0,0,0,0.7)';
   document.body.appendChild(dom);
   ReactDOM.render(<Loading />, dom);
 };
@@ -62,7 +54,7 @@ export const showLoading = () => {
  */
 export const hideLoading = () => {
   const loadingEl = document.getElementById('pp-loading');
-  loadingEl && document.body.removeChild(loadingEl as Node);
+  loadingEl && document.body.removeChild<HTMLElement>(loadingEl);
 };
 
 /**

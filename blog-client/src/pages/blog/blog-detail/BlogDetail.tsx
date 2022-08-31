@@ -15,6 +15,7 @@ import moment from 'moment';
 import cn from 'classnames';
 import styles from './BlogDetail.less';
 import { useBoolean } from 'ahooks';
+import { hideLoading, showLoading } from '@/utils';
 
 const ExampleComment = (props: any) => {
   const { children } = props;
