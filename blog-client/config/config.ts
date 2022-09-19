@@ -32,6 +32,13 @@ export default defineConfig({
           localIdentName: '[name]__[local]__[hash:base64:5]',
         },
       });
+
+    config.module
+      .rule('url-loader')
+      .test(/\.(cur)(\?.*)?$/)
+      .use('url-loader')
+      .loader('url-loader')
+      .end();
   },
   dynamicImport: {
     loading: '@/components/Loading',
