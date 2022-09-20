@@ -8,6 +8,8 @@ const Layouts: React.FC<HTMLAttributes<HTMLDivElement>> = (props) => {
     <div className={styles.root}>
       <Header />
       <section className={styles.section}>
+        <div className={styles.animateBg}></div>
+        <div className={styles.star}></div>
         <Main>{props.children}</Main>
       </section>
     </div>
