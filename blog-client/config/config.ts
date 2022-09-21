@@ -32,7 +32,7 @@ export default defineConfig({
           localIdentName: '[name]__[local]__[hash:base64:5]',
         },
       });
-
+    // 配置自定义鼠标图标cur文件引入loader
     config.module
       .rule('url-loader')
       .test(/\.(cur)(\?.*)?$/)
@@ -40,7 +40,7 @@ export default defineConfig({
       .loader('url-loader')
       .end();
   },
-  dynamicImport: {
-    loading: '@/components/Loading',
-  },
+  // dynamicImport: {
+  //   loading: '@/components/Loading',
+  // },
 });

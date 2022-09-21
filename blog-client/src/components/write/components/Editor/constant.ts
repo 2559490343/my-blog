@@ -15,7 +15,7 @@ import 'prismjs/components/prism-go';
 import 'prismjs/components/prism-markup';
 
 // 转换默认表情包列表，让webpack可以正确加载到默认表情包中的图片，请确保已对png格式的文件配置了loader
-const emoticons = defaultEmoticons.map((item) =>
+const emoticons = defaultEmoticons.map((item: string) =>
   require(`braft-extensions/dist/assets/${item}`),
 );
 // 也可以使用自己的表情包资源

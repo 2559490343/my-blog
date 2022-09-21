@@ -63,34 +63,36 @@ const Header = () => {
         handleLogin={handleLogin}
         hideLogin={() => setShowLogin(false)}
       />
-      <div className={styles.left}>
-        <Logo />
-        <div className={styles.nav}>
-          <nav>
-            {navs.map((nav) => (
-              <NavLink
-                to={nav.route}
-                activeClassName={styles.active}
-                key={nav.route}
-              >
-                {nav.label}
-              </NavLink>
-            ))}
-          </nav>
+      <div className={styles.headerInner}>
+        <div className={styles.left}>
+          <Logo />
+          <div className={styles.nav}>
+            <nav>
+              {navs.map((nav) => (
+                <NavLink
+                  to={nav.route}
+                  activeClassName={styles.active}
+                  key={nav.route}
+                >
+                  {nav.label}
+                </NavLink>
+              ))}
+            </nav>
+          </div>
         </div>
-      </div>
-      <div className={styles.right}>
-        <div
-          className={styles.user}
-          onClick={() => !isLogin && setShowLogin(!showLogin)}
-        >
-          {!isLogin ? (
-            <Avatar size={30} icon={<UserOutlined />} />
-          ) : (
-            <Dropdown overlay={menu} placement="bottomLeft" arrow>
-              <Avatar size={30} src="https://joeschmoe.io/api/v1/random" />
-            </Dropdown>
-          )}
+        <div className={styles.right}>
+          <div
+            className={styles.user}
+            onClick={() => !isLogin && setShowLogin(!showLogin)}
+          >
+            {!isLogin ? (
+              <Avatar size={30} icon={<UserOutlined />} />
+            ) : (
+              <Dropdown overlay={menu} placement="bottomLeft" arrow>
+                <Avatar size={30} src="https://joeschmoe.io/api/v1/random" />
+              </Dropdown>
+            )}
+          </div>
         </div>
       </div>
     </header>

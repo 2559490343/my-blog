@@ -1,3 +1,5 @@
+@import '../config/variable.less';
+
 html,
 body,
 #root {
@@ -7,7 +9,7 @@ body,
   overflow: hidden;
   position: relative;
   font-size: 16px;
-  cursor: url('./assets/cur/OW-Arrow.cur'), auto;
+  cursor: var(--cursor-auto);
 }
 
 html,
@@ -89,7 +91,7 @@ table {
 }
 a {
   text-decoration: none;
-  cursor: url('./assets/cur/OW-Hand.cur'), pointer;
+  cursor: var(--cursor-pointer);
 }
 
 h1,

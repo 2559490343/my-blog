@@ -1,10 +1,9 @@
-@import url(/config/variable.less);
 .root {
   width: 315px;
   height: 100%;
   overflow: hidden;
   padding: 20px 0;
-  border-right: 1px solid @primary-color;
+  border-right: 1px solid var(--primary-color);
   &:hover {
     overflow: auto;
   }
@@ -22,10 +21,10 @@
       cursor: pointer;
       &:hover {
         .en {
-          color: @primary-color;
+          color: var(--primary-color);
         }
         .cn {
-          color: @primary-color;
+          color: var(--primary-color);
           opacity: 0.65;
         }
       }
@@ -39,14 +38,14 @@
     }
     .item.active {
       .en {
-        color: @primary-color;
+        color: var(--primary-color);
       }
       .cn {
-        color: @primary-color;
+        color: var(--primary-color);
         opacity: 0.65;
       }
-      background-color: @primary-deep-color;
-      border-right: 3px solid @primary-color;
+      background-color: var(--primary-deep-color);
+      border-right: 3px solid var(--primary-color);
     }
   }
 }

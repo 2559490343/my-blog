@@ -10,13 +10,13 @@
     padding: 25px 35px;
     margin: 0 auto;
     margin-bottom: 15px;
-    background-color: #191a1b;
+    background-color: rgba(25, 26, 27, 0.8);
     .list-title {
       h4 {
         color: #fff;
         font-weight: 600;
         font-size: 20px;
-        cursor: pointer;
+        cursor: var(--cursor-pointer);
       }
       h4:hover {
         color: #4285f4;
@@ -30,7 +30,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        cursor: pointer;
+        cursor: var(--cursor-pointer);
       }
     }
     .list-intro {
@@ -62,7 +62,7 @@
       .author {
         margin: 0 16px 0 7px;
       }
-      .point{
+      .point {
         display: inline-block;
         margin: 0 7px;
         margin-bottom: 3px;
@@ -72,9 +72,9 @@
         border-radius: 50%;
       }
     }
-  }
-  .list-item:hover {
-    background-color: #212223;
+    &:hover {
+      background-color: rgba(33, 34, 35, 0.9);
+    }
   }
 }
 /*.去除滚动条伪类*/

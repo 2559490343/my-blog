@@ -1,4 +1,3 @@
-@import url(/config/variable.less);
 .root {
   .iconBox {
     display: flex;
@@ -8,12 +7,12 @@
       width: 200px;
       height: 100px;
       text-align: center;
-      border-radius: @border-radius;
+      border-radius: var(--border-radius);
       margin-bottom: 8px;
       cursor: pointer;
       user-select: none;
       &:hover {
-        background-color: @primary-color;
+        background-color: var(--primary-color);
         .iconInner {
           transform: scale(1.2);
         }

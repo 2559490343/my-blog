@@ -7,6 +7,8 @@
   color: #fff;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 5;
   .section {
     overflow: auto;
     flex: 1;
@@ -17,23 +19,23 @@
       z-index: 5;
       position: relative;
     }
-    .animateBg {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      background: url(../assets/images/midground.png);
-      animation: move 300s linear infinite;
-      z-index: 1;
+  }
+  .animateBg {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: url(../assets/images/midground.png);
+    animation: move 300s linear infinite;
+    z-index: 0;
+  }
+  @keyframes move {
+    0% {
+      background-position: 600% 0;
     }
-    @keyframes move {
-      0% {
-        background-position: 600% 0;
-      }
-      100% {
-        background-position: 0 600%;
-      }
+    100% {
+      background-position: 0 600%;
     }
   }
 }
