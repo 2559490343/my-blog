@@ -50,7 +50,7 @@ export default function EditorModal(props: {
 
   return (
     <Modal
-      visible={visible}
+      open={visible}
       className={styles.writeEditor}
       maskClosable={false}
       closable={false}

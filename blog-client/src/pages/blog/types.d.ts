@@ -16,3 +16,8 @@ export type ArticleType = {
   commentCount: number;
   collectionCount: number;
 };
+
+export type TagDataType = {
+  label: string;
+  count: number;
+};

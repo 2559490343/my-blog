@@ -1,68 +1,114 @@
 .root {
   width: 1200px;
   margin: 0 auto;
-  .list {
-    .item {
+  position: relative;
+  height: 100%;
+  display: flex;
+  .listBox {
+    flex: 2;
+    margin-right: 16px;
+    .searchBox {
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
-      margin-bottom: 16px;
-      .cover {
-        border-radius: var(--border-radius);
-        overflow: hidden;
-        margin-right: 36px;
-        cursor: var(--cursor-pointer);
-        img {
-          width: 180px;
-          height: 115px;
-          transition: all 0.8s;
-        }
+      input {
+        margin-right: 16px;
       }
-      .info {
-        flex: 1;
-        width: 0;
-        .title {
-          font-size: 20px;
-          font-weight: 600;
-          margin-bottom: 6px;
-          cursor: var(--cursor-pointer);
-          &:hover {
-            color: var(--primary-color);
-          }
-        }
-        .introduction {
+      input,
+      button {
+        background-color: transparent;
+        color: #fff;
+      }
+    }
+    .list {
+      height: calc(100% - 88px);
+      overflow-y: auto;
+      .item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+        .cover {
+          border-radius: var(--border-radius);
           overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          color: #f0f0f0;
-        }
-        .kind {
-          margin: 6px 0;
-          :global {
-            .ant-tag {
-              background-color: transparent;
-              color: inherit;
-              cursor: var(--cursor-pointer);
-            }
+          margin-right: 36px;
+          cursor: var(--cursor-pointer);
+          img {
+            width: 180px;
+            height: 115px;
+            transition: all 0.8s;
           }
         }
-        .otherInfo {
-          span {
-            margin-right: 5px;
-          }
-          .author {
+        .info {
+          flex: 1;
+          width: 0;
+          .title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 6px;
             cursor: var(--cursor-pointer);
             &:hover {
               color: var(--primary-color);
             }
           }
-        }
-      }
-      &:hover {
-        .cover {
-          img {
-            transform: scale(1.2);
+          .introduction {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #f0f0f0;
+          }
+          .kind {
+            margin: 6px 0;
+            :global {
+              .ant-tag {
+                background-color: transparent;
+                color: inherit;
+                cursor: var(--cursor-pointer);
+                &:hover {
+                  color: var(--primary-color);
+                  border-color: var(--primary-color);
+                }
+              }
+            }
+          }
+          .otherInfo {
+            span {
+              margin-right: 5px;
+            }
+            .author {
+              cursor: var(--cursor-pointer);
+              &:hover {
+                color: var(--primary-color);
+              }
+            }
           }
         }
+        &:hover {
+          .cover {
+            img {
+              transform: scale(1.2);
+            }
+          }
+        }
+      }
+    }
+  }
+  .kindBox {
+    flex: 1;
+    height: 300px;
+    .tagBox {
+      margin-top: 8px;
+    }
+    .tag {
+      background-color: transparent;
+      color: inherit;
+      cursor: var(--cursor-pointer);
+      padding: 2px 12px;
+      &:hover {
+        .active();
+      }
+      &.active {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
       }
     }
   }
