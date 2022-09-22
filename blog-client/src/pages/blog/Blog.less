@@ -1,5 +1,69 @@
 .root {
-  padding: 40px 0;
   width: 1200px;
   margin: 0 auto;
+  .list {
+    .item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+      .cover {
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        margin-right: 36px;
+        cursor: var(--cursor-pointer);
+        img {
+          width: 180px;
+          height: 115px;
+          transition: all 0.8s;
+        }
+      }
+      .info {
+        flex: 1;
+        width: 0;
+        .title {
+          font-size: 20px;
+          font-weight: 600;
+          margin-bottom: 6px;
+          cursor: var(--cursor-pointer);
+          &:hover {
+            color: var(--primary-color);
+          }
+        }
+        .introduction {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          color: #f0f0f0;
+        }
+        .kind {
+          margin: 6px 0;
+          :global {
+            .ant-tag {
+              background-color: transparent;
+              color: inherit;
+              cursor: var(--cursor-pointer);
+            }
+          }
+        }
+        .otherInfo {
+          span {
+            margin-right: 5px;
+          }
+          .author {
+            cursor: var(--cursor-pointer);
+            &:hover {
+              color: var(--primary-color);
+            }
+          }
+        }
+      }
+      &:hover {
+        .cover {
+          img {
+            transform: scale(1.2);
+          }
+        }
+      }
+    }
+  }
 }

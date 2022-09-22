@@ -59,12 +59,12 @@ export default function EditorModal(props: {
         <EditorFooter handleCancel={handleCancel} handleSubmit={handleSubmit} />
       }
     >
-      <div className={styles.editorHeader}>
-        <EditorForm editorForm={editorForm} />
-      </div>
-      <div className={styles.editorBox}>
-        <Editor editorValue={editorValue} setEditorValue={setEditorValue} />
-      </div>
+        <div className={styles.editorHeader}>
+          <EditorForm editorForm={editorForm} />
+        </div>
+        <div className={styles.editorBox}>
+          <Editor editorValue={editorValue} setEditorValue={setEditorValue} />
+        </div>
     </Modal>
   );
 }

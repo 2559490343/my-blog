@@ -1,6 +1,10 @@
+//@ts-ignore
 import CodeHighlighter from 'braft-extensions/dist/code-highlighter';
+//@ts-ignore
 import ColorPicker from 'braft-extensions/dist/color-picker';
+//@ts-ignore
 import Markdown from 'braft-extensions/dist/markdown';
+//@ts-ignore
 // 引入表情包组件和默认表情包列表
 import Emoticon, { defaultEmoticons } from 'braft-extensions/dist/emoticon';
 // 引入组件所需样式文件
@@ -54,7 +58,7 @@ const options = {
 export const registerPlugins = (BraftEditor: any) => {
   BraftEditor.use(
     ColorPicker({
-      theme: 'light', // 支持dark和light两种主题，默认为dark
+      theme: 'dark', // 支持dark和light两种主题，默认为dark
     }),
   );
   BraftEditor.use(Markdown());

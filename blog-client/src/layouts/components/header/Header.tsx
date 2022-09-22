@@ -1,11 +1,16 @@
 import { NavLink } from 'umi';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Login from '@/components/login';
-import { Avatar, Menu, Dropdown, Modal } from 'antd';
-import { UserOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import { Avatar, Menu, Dropdown, Modal, Tooltip } from 'antd';
+import {
+  UserOutlined,
+  ExclamationCircleOutlined,
+  SkinFilled,
+} from '@ant-design/icons';
 import { getStorage, setStorage, removeStorage } from '@/utils';
 import styles from './Header.less';
 import Logo from '@/components/Logo';
+import ChangeSkin from '@/components/ChangeSkin';
 
 const Header = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -81,6 +86,9 @@ const Header = () => {
           </div>
         </div>
         <div className={styles.right}>
+          <div className={styles.toolBar}>
+            <ChangeSkin />
+          </div>
           <div
             className={styles.user}
             onClick={() => !isLogin && setShowLogin(!showLogin)}

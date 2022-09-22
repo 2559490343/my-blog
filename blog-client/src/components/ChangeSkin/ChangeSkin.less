@@ -1,0 +1,38 @@
+.root {
+  .icon {
+    cursor: var(--cursor-pointer);
+  }
+}
+.modal {
+  :global {
+    .ant-modal-header {
+      background-color: var(--bgc);
+      border-color: var(--primary-color);
+      .ant-modal-title {
+        color: #fff;
+      }
+    }
+    .ant-modal-footer {
+      border-color: var(--primary-color);
+    }
+    .ant-modal-content {
+      background-color: var(--bgc);
+      box-shadow: var(--box-shadow);
+    }
+    .ant-tabs {
+      .ant-tabs-nav {
+        .ant-tabs-nav-wrap {
+          .ant-tabs-nav-list {
+            .ant-tabs-tab {
+              color: #fff;
+              margin: 0;
+              &.ant-tabs-tab-active {
+                color: #1890ff;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

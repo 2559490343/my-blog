@@ -1,5 +1,10 @@
-type tagsType = { recommend: boolean; original: boolean; quote: boolean };
-export interface BlogProps {
+export type tagsType = {
+  recommend: boolean;
+  original: boolean;
+  quote: boolean;
+};
+
+export type ArticleType = {
   id: number;
   title: string;
   content: string;
@@ -10,4 +15,4 @@ export interface BlogProps {
   likeCount: number;
   commentCount: number;
   collectionCount: number;
-}
+};

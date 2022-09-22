@@ -27,7 +27,7 @@ export default function EditorForm(props: any) {
           },
         ]}
       >
-        <Input maxLength={30} />
+        <Input maxLength={30} placeholder="请输入" />
       </Form.Item>
     </Form>
   );

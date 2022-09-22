@@ -9,6 +9,9 @@ const Layouts: React.FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   const location = useLocation();
   const { pathname } = location;
   const [showLoading, setShowLoading] = useState(false);
+  const [bgObj, setBgObj] = useState<Record<string, any> | undefined>(
+    undefined,
+  );
 
   const changeLoading = () => {
     setShowLoading(true);
@@ -27,8 +30,19 @@ const Layouts: React.FC<HTMLAttributes<HTMLDivElement>> = (props) => {
     }
   }, [pathname]);
 
+  useEffect(() => {
+    const bg = localStorage.getItem('bg');
+    if (bg) {
+      setBgObj({
+        background: `url(${bg})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+      });
+    }
+  }, []);
+
   return (
-    <div className={styles.root}>
+    <div className={styles.root} style={bgObj}>
       {showLoading && <Loading />}
       <div className={styles.animateBg}></div>
       <Header />
