@@ -4,7 +4,7 @@ import styles from './Blog.less';
 import { history } from 'umi';
 import Container from '@/components/container';
 import { Button, Input, Space, Tag } from 'antd';
-import { ArticleType, TagDataType } from './types';
+import { ArticleType, SortType, TagDataType } from './types';
 import {
   UserOutlined,
   HistoryOutlined,
@@ -15,6 +15,9 @@ import {
   TagOutlined,
 } from '@ant-design/icons';
 import cn from 'classnames';
+import SortItem from './components/SortItem';
+import { sorters } from './constant';
+import { useUpdateEffect } from 'ahooks';
 
 const Blog = () => {
   const [listData, setListData] = useState<Array<ArticleType>>([]);
@@ -22,16 +25,16 @@ const Blog = () => {
   const [selectMap, setSelectMap] = useState<
     Record<string, boolean | undefined>
   >({});
+  const [currentSort, setCurrentSort] = useState<SortType | undefined>();
+  const [searchVal, setSearchVal] = useState('');
 
   const onItemClick = (row: ArticleType) => {
     console.log(row);
     history.push('/blog/blog-detail');
   };
-
   const getData = async () => {
     setListData(Array(20).fill({}));
   };
-
   const getTagList = async () => {
     setTagList([
       {
@@ -72,7 +75,6 @@ const Blog = () => {
       },
     ]);
   };
-
   const handleSelectKind = (label: string) => {
     const _selectMap = { ...selectMap };
     if (!_selectMap[label]) {
@@ -82,30 +84,67 @@ const Blog = () => {
     }
     setSelectMap(_selectMap);
   };
+  const onSortChange = (name: string, sorter: boolean) => {
+    setCurrentSort({
+      name,
+      sorter,
+    });
+  };
+  const handleReset = () => {
+    setCurrentSort(undefined);
+    setSearchVal('');
+    setSelectMap({});
+  };
 
   useEffect(() => {
     getData();
     getTagList();
   }, []);
+  useUpdateEffect(() => {
+    console.log(currentSort);
+  }, [currentSort]);
 
   return (
     <div className={styles.root}>
       <div className={styles.listBox}>
         <Container className={styles.searchBox}>
-          <Input placeholder="请输入关键字进行搜索" />{' '}
-          <Button icon={<SearchOutlined />}>搜索</Button>
+          <div className={styles.inputBox}>
+            <Input
+              placeholder="请输入关键字进行搜索"
+              style={{ marginRight: 8 }}
+              value={searchVal}
+              onChange={(e) => setSearchVal(e.target.value)}
+            />
+            <Button icon={<SearchOutlined />}>搜索</Button>
+          </div>
+          <div className={styles.extraSearch}>
+            <Space size={16}>
+              {sorters.map((sort) => (
+                <SortItem
+                  label={sort.label}
+                  name={sort.name}
+                  onChange={onSortChange}
+                  active={currentSort?.name === sort.name}
+                  key={sort.name}
+                />
+              ))}
+              <Button type="dashed" onClick={handleReset}>
+                重置
+              </Button>
+            </Space>
+          </div>
         </Container>
         <div className={styles.list}>
           {listData.map((item, idx) => (
             <Container className={styles.item} key={idx}>
-              <div className={styles.cover}>
+              <div className={styles.cover} onClick={() => onItemClick(item)}>
                 <img
                   src="https://img1.baidu.com/it/u=4106831853,1587981098&fm=253&fmt=auto&app=138&f=JPEG?w=550&h=354"
                   alt=""
                 />
               </div>
               <div className={styles.info}>
-                <div className={styles.title}>
+                <div className={styles.title} onClick={() => onItemClick(item)}>
                   痞子衡嵌入式：聊聊i.MXRT1xxx上的普通GPIO与高速GPIO差异及其用法
                 </div>
                 <div className={styles.introduction}>
@@ -115,7 +154,7 @@ const Blog = () => {
                   来软件模拟实现相应功能，这时候 GPIO 本身性能
                 </div>
                 <div className={styles.kind}>
-                  <Tag>前端</Tag>
+                  <Tag onClick={() => handleSelectKind('前端')}>前端</Tag>
                   <Tag>React</Tag>
                 </div>
                 <div className={styles.otherInfo}>
@@ -149,7 +188,10 @@ const Blog = () => {
             {tagList.map((tag, idx) => (
               <Tag
                 key={tag.label}
-                className={cn({ [styles.active]: selectMap[tag.label] },styles.tag)}
+                className={cn(
+                  { [styles.active]: selectMap[tag.label] },
+                  styles.tag,
+                )}
                 onClick={() => handleSelectKind(tag.label)}
               >
                 <Space size={6}>

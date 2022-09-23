@@ -21,3 +21,8 @@ export type TagDataType = {
   label: string;
   count: number;
 };
+
+export type SortType = {
+  name: string;
+  sorter: boolean;
+};
