@@ -4,6 +4,7 @@
 /node_modules
 /blog-client/node_modules
 /blog-server/node_modules
+/blog-server-ts/node_modules
 /npm-debug.log*
 /yarn-error.log
 /yarn.lock
@@ -11,6 +12,8 @@
 
 # production
 /blog-client/dist
+/blog-server/dist
+/blog-server-ts/dist
 
 # misc
 .DS_Store

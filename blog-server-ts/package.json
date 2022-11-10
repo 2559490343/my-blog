@@ -1,0 +1,37 @@
+{
+  "name": "koa-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "typescript-module-alias src/index.ts",
+    "start": "nodemon --watch src/**/* -e ts --exec npm run dev",
+    "ts-build": "rm -rf dist && tsc",
+    "pm": "npm run ts-build && pm2 start dist/src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.2.1",
+    "koa-onerror": "^4.2.0",
+    "koa-router": "^12.0.0",
+    "koa-static": "^5.0.0",
+    "mysql2": "^2.3.3"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.5",
+    "@types/koa-bodyparser": "^4.3.10",
+    "@types/koa-json": "^2.0.20",
+    "@types/koa-logger": "^3.1.2",
+    "@types/koa-router": "^7.4.4",
+    "@types/node": "^18.11.9",
+    "chalk": "^4.1.0",
+    "esbuild-register": "^3.4.0",
+    "nodemon": "^2.0.20",
+    "typescript-module-alias": "^2.2.9"
+  }
+}

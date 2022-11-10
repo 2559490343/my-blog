@@ -11,7 +11,7 @@ class Mysql {
   }
   query() {
     return new Promise((resolve, reject) => {
-      pool.query('SELECT * from user', function (error, results, fields) {
+      pool.query('SELECT * from articals', function (error, results, fields) {
         if (error) {
           throw error
         };

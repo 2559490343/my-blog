@@ -1,13 +1,13 @@
 const config = {
   // 启动端口
-  port: 3000,
+  port: 8888,
   // 数据库配置
   database: {
-    DATABASE: 'myblog',
+    DATABASE: 'blog',
     USERNAME: 'root',
     PASSWORD: '123456',
     PORT: '3306',
-    HOST: 'localhost'
+    HOST: '127.0.0.1'
   }
 }
 
