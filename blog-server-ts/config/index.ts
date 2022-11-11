@@ -5,7 +5,7 @@ export default {
     host: "127.0.0.1",
     user: "root",
     database: "blog",
-    password: "123456",
+    password: "xiong130.",
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,

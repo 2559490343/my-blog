@@ -1,5 +1,7 @@
 import KoaRouter from "koa-router";
-import { RowDataPacket } from "mysql2";
+import { OkPacket, RowDataPacket } from "mysql2";
+import DBPool from "./db";
+import { ObjType } from "./types";
 
 export const getKoaRouter = () => new KoaRouter();
 
@@ -26,4 +28,13 @@ export const transformDataSource = <T>(dataSource: RowDataPacket[]) => {
     }
     return result;
   }) as T[];
+};
+
+export const executeSql = async <T = ObjType>(sql: string, args?: any[]) => {
+  const pool = DBPool.getDBPool();
+  const [rows, fields] = await pool.execute(sql, args);
+  return {
+    rows: rows as T[],
+    fields,
+  };
 };

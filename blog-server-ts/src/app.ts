@@ -18,6 +18,12 @@ app.use(
 );
 app.use(json());
 app.use(logger());
+// app.use(logger((str, args) => {
+//   // redirect koa logger to other output pipe
+//   // default is process.stdout(by console.log function)
+//   console.log('str--',str);
+//   console.log('args--',args);
+// }))
 app.use(require("koa-static")(process.cwd() + "/public"));
 
 // routers
