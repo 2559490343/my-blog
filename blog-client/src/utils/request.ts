@@ -1,4 +1,3 @@
-import { loading, close } from './index';
 import { message } from 'antd';
 import { RequestOptionsProps, ResultProps } from './types';
 import qs from 'querystring';
@@ -17,22 +16,22 @@ const parseRequest = (url: string, method: string, params: any) => {
     case 'POST':
     case 'PUT':
       body = JSON.stringify(params);
-      return [url, body];
+      return [_url, body];
     default:
-      return [url, null];
+      return [_url, null];
   }
 };
 
-export const request = async (
+export const request = async <T = any>(
   method: string,
   url: string,
   params: any = {},
   options?: RequestOptionsProps,
 ) => {
   options = options || { headers: {}, dataType: 'json' };
-  loading();
   const [requestUrl, requestBody] = parseRequest(url, method, params);
-  return new Promise<ResultProps>((resolve, reject) => {
+
+  return new Promise<ResultProps<T>>((resolve, reject) => {
     fetch(requestUrl || '', {
       method, //GET, POST, PUT, DELETE
       body: requestBody,
@@ -53,7 +52,6 @@ export const request = async (
     })
       .then((response) => {
         console.log(response);
-
         const { ok, headers } = response;
         if (ok) {
           let dataType = options?.dataType;
@@ -81,7 +79,6 @@ export const request = async (
             ok,
           };
         } else {
-          close();
           return reject();
         }
       })
@@ -92,47 +89,53 @@ export const request = async (
           body: null,
         };
         const data = await body;
-        close();
         if (options?.dataType === 'json') {
           if (data.code !== 200) {
             message.error(data.msg);
             return reject();
           }
         }
-        resolve({
-          data,
-          ok,
-          headers,
-        });
+        if (ok) {
+          resolve(data);
+        } else {
+          reject();
+        }
       })
       .catch((err) => {
         console.log('requestError---', err);
         message.error('服务器错误!');
-        close();
         reject(err);
       });
   });
 };
 
-export const get = (url: string, data?: any, options?: RequestOptionsProps) => {
-  return request('GET', url, data || {}, options);
+export const get = <T = any>(
+  url: string,
+  data?: any,
+  options?: RequestOptionsProps,
+) => {
+  return request<T>('GET', url, data || {}, options);
 };
-export const del = (url: string, data?: any, options?: RequestOptionsProps) => {
-  return request('DELETE', url, data || {}, options);
+export const del = <T = any>(
+  url: string,
+  data?: any,
+  options?: RequestOptionsProps,
+) => {
+  return request<T>('DELETE', url, data || {}, options);
 };
-export const post = (
+export const post = <T = any>(
   url: string,
   params: any,
   options?: RequestOptionsProps,
 ) => {
-  return request('POST', url, params || {}, options);
+  return request<T>('POST', url, params || {}, options);
 };
-export const put = (
+export const put = <T = any>(
   url: string,
   params: any,
   options?: RequestOptionsProps,
 ) => {
-  return request('PUT', url, params || {}, options);
+  return request<T>('PUT', url, params || {}, options);
 };
 
 /**

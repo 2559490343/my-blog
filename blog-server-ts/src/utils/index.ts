@@ -1,13 +1,12 @@
 import KoaRouter from "koa-router";
-import { OkPacket, RowDataPacket } from "mysql2";
-import DBPool from "./db";
-import { ObjType } from "./types";
+import { RowDataPacket } from "mysql2";
 
 export const getKoaRouter = () => new KoaRouter();
 
 const firstLetterToUpper = (name: string) => {
   return name.charAt(0).toUpperCase() + name.slice(1);
 };
+// 下划线转驼峰
 export const nameToHump = (fileName = "") => {
   const nameArr = fileName.split("_") || [];
   return nameArr.reduce((pre, word, idx) => {
@@ -19,6 +18,10 @@ export const nameToHump = (fileName = "") => {
     return pre;
   }, "");
 };
+//驼峰转下划线
+export const nameToLine = (name: string) => {
+  return name.replace(/([A-Z])/g, "_$1").toLowerCase();
+};
 
 export const transformDataSource = <T>(dataSource: RowDataPacket[]) => {
   return dataSource.map((data) => {
@@ -28,13 +31,4 @@ export const transformDataSource = <T>(dataSource: RowDataPacket[]) => {
     }
     return result;
   }) as T[];
-};
-
-export const executeSql = async <T = ObjType>(sql: string, args?: any[]) => {
-  const pool = DBPool.getDBPool();
-  const [rows, fields] = await pool.execute(sql, args);
-  return {
-    rows: rows as T[],
-    fields,
-  };
 };

@@ -18,6 +18,7 @@ import cn from 'classnames';
 import SortItem from './components/SortItem';
 import { sorters } from './constant';
 import { useUpdateEffect } from 'ahooks';
+import { getListApi } from './services';
 
 const Blog = () => {
   const [listData, setListData] = useState<Array<ArticleType>>([]);
@@ -33,7 +34,11 @@ const Blog = () => {
     history.push('/blog/blog-detail');
   };
   const getData = async () => {
-    setListData(Array(20).fill({}));
+    const res = await getListApi({});
+    if (res.success) {
+      const list = res.data.list ?? [];
+      setListData(list);
+    }
   };
   const getTagList = async () => {
     setTagList([
@@ -90,6 +95,9 @@ const Blog = () => {
       sorter,
     });
   };
+  const handleSearch = () => {
+    getData();
+  };
   const handleReset = () => {
     setCurrentSort(undefined);
     setSearchVal('');
@@ -115,7 +123,9 @@ const Blog = () => {
               value={searchVal}
               onChange={(e) => setSearchVal(e.target.value)}
             />
-            <Button icon={<SearchOutlined />}>搜索</Button>
+            <Button icon={<SearchOutlined />} onClick={handleSearch}>
+              搜索
+            </Button>
           </div>
           <div className={styles.extraSearch}>
             <Space size={16}>

@@ -18,3 +18,4 @@ export type MySqlErrorType = {
   sqlState: string;
   sqlMessage: string;
 };
+export type SqlType = "INSERT" | "UPDATE" | "SELECT" | "SELECTONE" | "DELETE";

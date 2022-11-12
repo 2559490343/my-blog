@@ -3,17 +3,19 @@ type actionReturnType = {
   payload: any;
 };
 
+export type ObjType = Record<string | number, any>;
+
 export type DvaActionsType = (payload: any) => actionReturnType;
 
-type dataProps = {
-  msg: string;
-  code: number;
-  list: any;
+export type ListResType<T = ObjType> = {
+  list: T[];
+  totalCount: number;
 };
-export interface ResultProps {
-  data: dataProps;
-  ok: boolean;
-  headers: any;
+export interface ResultProps<T = any> {
+  data: T;
+  code: number;
+  message: string;
+  success: boolean;
 }
 
 export interface RequestOptionsProps {

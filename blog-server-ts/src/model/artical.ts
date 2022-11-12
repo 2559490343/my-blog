@@ -1,6 +1,12 @@
 export default class Artical {
   id!: number;
-  name!: string;
-  type?: string;
+  title!: string;
+  content?: string;
+  tags?: string;
+  author?: string;
+  readCount?: number;
   likeCount?: number;
+  commentCount?: number;
+  createTime?: number;
+  updateTime?: number;
 }

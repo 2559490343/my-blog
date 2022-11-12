@@ -1,20 +1,13 @@
-export type tagsType = {
-  recommend: boolean;
-  original: boolean;
-  quote: boolean;
-};
-
 export type ArticleType = {
   id: number;
   title: string;
   content: string;
-  tags: tagsType;
+  tags: string[];
   author: string;
   createDate: string;
   readCount: number;
   likeCount: number;
   commentCount: number;
-  collectionCount: number;
 };
 
 export type TagDataType = {
