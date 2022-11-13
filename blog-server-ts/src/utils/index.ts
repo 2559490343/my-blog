@@ -1,7 +1,9 @@
+import Router from "koa-router";
 import KoaRouter from "koa-router";
 import { RowDataPacket } from "mysql2";
 
-export const getKoaRouter = () => new KoaRouter();
+export const getKoaRouter = (options?: Router.IRouterOptions) =>
+  new KoaRouter(options);
 
 const firstLetterToUpper = (name: string) => {
   return name.charAt(0).toUpperCase() + name.slice(1);

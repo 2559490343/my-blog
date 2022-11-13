@@ -2,8 +2,7 @@ import Koa from "koa";
 import json from "koa-json";
 import bodyparser from "koa-bodyparser";
 import logger from "koa-logger";
-import userRoutes from "./routes/users";
-import articalRoutes from "./routes/articals";
+import routers from "./routes";
 import DBPool from "./utils/db";
 
 const app = new Koa();
@@ -26,13 +25,11 @@ app.use(json());
 app.use(logger());
 app.use(require("koa-static")(process.cwd() + "/public"));
 // routers
-app.use(userRoutes.routes()).use(userRoutes.allowedMethods());
-app.use(articalRoutes.routes()).use(articalRoutes.allowedMethods());
+app.use(routers.routes()).use(routers.allowedMethods());
 
 // error-handling
 app.on("error", (err, ctx) => {
   console.error("server error", err, ctx);
 });
-
 
 export default app;

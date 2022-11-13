@@ -4,7 +4,7 @@ import qs from 'querystring';
 
 let controller = new AbortController();
 let signal = controller.signal;
-const prefixUrl = '/api';
+const prefixUrl = '/blog-server';
 const parseRequest = (url: string, method: string, params: any) => {
   let body = null,
     _url = prefixUrl + url;

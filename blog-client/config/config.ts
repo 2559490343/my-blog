@@ -2,10 +2,10 @@ import { defineConfig } from 'umi';
 
 export default defineConfig({
   proxy: {
-    '/api': {
+    '/blog-server': {
       target: 'http://localhost:8888/',
       changeOrigin: true,
-      pathRewrite: { '^/api': '' },
+      // pathRewrite: { '^/api': '' },
     },
   },
   title: '皮皮博客',
