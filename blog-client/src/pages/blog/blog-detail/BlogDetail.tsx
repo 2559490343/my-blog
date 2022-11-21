@@ -9,16 +9,19 @@ import {
 } from '@ant-design/icons';
 import { Avatar, Button, Rate, Comment, Tooltip, Space } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import cn from 'classnames';
 import styles from './BlogDetail.less';
 import { useBoolean } from 'ahooks';
 import Container from '@/components/container';
 import { history } from 'umi';
+import { detailApi } from '../services';
+import { ArticleType } from '../types';
 
 const ExampleComment = (props: any) => {
   const { children } = props;
+
   return (
     <Comment
       actions={[<span key="comment-nested-reply-to">Reply to</span>]}
@@ -47,6 +50,7 @@ const ExampleComment = (props: any) => {
 const BlogDetail = () => {
   const [hasLike, { set }] = useBoolean(false);
   const [hasCollection, { toggle }] = useBoolean(false);
+  const [articalInfo, setArticalInfo] = useState<Partial<ArticleType>>({});
 
   const handleLike = () => {
     set(!hasLike);
@@ -57,6 +61,18 @@ const BlogDetail = () => {
   const handleBack = () => {
     history.goBack();
   };
+  const getArticalDetail = async () => {
+    const { id } = history.location.query!;
+    const res = await detailApi(id as string);
+    if (res.success) {
+      const data = res.data ?? {};
+      setArticalInfo(data);
+    }
+  };
+
+  useEffect(() => {
+    getArticalDetail();
+  }, []);
 
   return (
     <div className={styles.root}>
@@ -107,19 +123,19 @@ const BlogDetail = () => {
           <div className={styles.midBox}>
             <Container className={styles.container}>
               <div className={styles.header}>
-                <h1 className={styles.title}>
-                  【完虐算法】字符串 - 滑动窗口专题{' '}
-                </h1>
+                <h1 className={styles.title}>{articalInfo.title}</h1>
                 <div className={styles.articleInfo}>
                   <span className={styles.infoItem}>
                     推荐指数: <Rate allowHalf defaultValue={2.5} disabled />
                   </span>
-                  <span className={styles.infoAuthor}>Johngo学长</span>
-                  <span>2021-11-05 17:18:26</span>
+                  <span className={styles.infoAuthor}>
+                    {articalInfo.createUser}
+                  </span>
+                  <span>{articalInfo.createTime}</span>
                 </div>
               </div>
               <div className={styles.articleContent}>
-                <Previewer contentValue="" />
+                <Previewer contentValue={articalInfo.content ?? ''} />
               </div>
             </Container>
             <Container className={styles.commentBox}>

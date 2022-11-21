@@ -2,9 +2,11 @@ export type ArticleType = {
   id: number;
   title: string;
   content: string;
-  tags: string[];
+  abstract: string;
+  tags: string;
   author: string;
-  createDate: string;
+  createTime: string;
+  createUser: string;
   readCount: number;
   likeCount: number;
   commentCount: number;

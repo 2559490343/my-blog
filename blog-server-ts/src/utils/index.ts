@@ -1,5 +1,6 @@
 import Router from "koa-router";
 import KoaRouter from "koa-router";
+import moment from "moment";
 import { RowDataPacket } from "mysql2";
 
 export const getKoaRouter = (options?: Router.IRouterOptions) =>
@@ -34,3 +35,6 @@ export const transformDataSource = <T>(dataSource: RowDataPacket[]) => {
     return result;
   }) as T[];
 };
+
+export const getNowTimeString = (formatStr?: string) =>
+  moment().format(formatStr ?? "YYYY-MM-DD HH:mm:ss");

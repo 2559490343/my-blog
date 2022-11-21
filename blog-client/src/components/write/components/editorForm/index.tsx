@@ -1,34 +1,12 @@
 import AutoSelect from '@/components/AutoSelect';
-import { Form, Input, Cascader } from 'antd';
+import { tagTypes } from '@/pages/blog/constant';
+import { Form, FormInstance, Input, message } from 'antd';
 
-export default function EditorForm(props: any) {
+interface EditorFormProps {
+  editorForm: FormInstance;
+}
+const EditorForm = (props: EditorFormProps) => {
   const { editorForm } = props;
-  const tags = [
-    {
-      label: '前端',
-      value: '前端',
-    },
-    {
-      label: 'React',
-      value: 'React',
-    },
-    {
-      label: '后端',
-      value: '后端',
-    },
-    {
-      label: 'Java',
-      value: 'Java',
-    },
-    {
-      label: 'Vue',
-      value: 'Vue',
-    },
-  ];
-  // 提交钩子
-  const handleSubmit = (values: any) => {
-    console.log(values);
-  };
 
   return (
     <Form
@@ -38,7 +16,6 @@ export default function EditorForm(props: any) {
       initialValues={{ remember: true }}
       autoComplete="off"
       form={editorForm}
-      onFinish={handleSubmit}
     >
       <Form.Item
         label="文章标题"
@@ -53,6 +30,18 @@ export default function EditorForm(props: any) {
         <Input maxLength={30} placeholder="请输入" />
       </Form.Item>
       <Form.Item
+        label="文章摘要"
+        name="abstract"
+        rules={[
+          {
+            required: true,
+            message: '请输入文章摘要!',
+          },
+        ]}
+      >
+        <Input.TextArea maxLength={200} placeholder="请输入" />
+      </Form.Item>
+      <Form.Item
         label="标签"
         name="tags"
         rules={[
@@ -62,8 +51,10 @@ export default function EditorForm(props: any) {
           },
         ]}
       >
-        <AutoSelect options={tags} mode='multiple' />
+        <AutoSelect options={tagTypes} mode="multiple" />
       </Form.Item>
     </Form>
   );
-}
+};
+
+export default EditorForm;

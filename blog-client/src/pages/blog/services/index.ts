@@ -8,4 +8,4 @@ export const getListApi = (params: ObjType) =>
 export const addApi = (params: ObjType) => post('/articals', params);
 export const editApi = (params: ObjType) => put('/articals', params);
 export const deleteApi = (id: number) => del(`/articals/${id}`);
-export const detailApi = (id: number) => get(`/articals/${id}`);
+export const detailApi = (id: string) => get(`/articals/${id}`);

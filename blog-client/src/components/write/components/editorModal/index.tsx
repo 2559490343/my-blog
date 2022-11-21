@@ -1,18 +1,20 @@
 import { useState } from 'react';
-import { Modal, Form } from 'antd';
+import { Modal, Form, message } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import EditorFooter from '../editorFooter';
 import EditorForm from '../editorForm';
 import styles from './index.less';
 import Editor from '../Editor';
 import BraftEditor from 'braft-editor';
+import { addApi } from '@/pages/blog/services';
 
 export default function EditorModal(props: {
   visible: boolean;
   setVisible: (val: boolean) => void;
+  freshList: () => void;
 }) {
   // 编辑文章弹窗的visible
-  const { visible, setVisible } = props;
+  const { visible, setVisible, freshList } = props;
   // editor绑定的value值
   const [editorValue, setEditorValue] = useState(
     BraftEditor.createEditorState(''),
@@ -42,9 +44,20 @@ export default function EditorModal(props: {
   };
 
   const handleSubmit = () => {
-    console.log(editorValue.toHTML());
-    editorForm.validateFields().then((values) => {
-      console.log(values);
+    editorForm.validateFields().then(async (values) => {
+      const params = {
+        ...values,
+        tags: values.tags?.join(',') ?? '',
+        content: editorValue.toHTML(),
+      };
+      const res = await addApi(params);
+      if (res.success) {
+        message.success('发布成功!');
+        setVisible(false);
+        freshList();
+      } else {
+        message.error(res.message);
+      }
     });
   };
 
@@ -59,12 +72,12 @@ export default function EditorModal(props: {
         <EditorFooter handleCancel={handleCancel} handleSubmit={handleSubmit} />
       }
     >
-        <div className={styles.editorHeader}>
-          <EditorForm editorForm={editorForm} />
-        </div>
-        <div className={styles.editorBox}>
-          <Editor editorValue={editorValue} setEditorValue={setEditorValue} />
-        </div>
+      <div className={styles.editorHeader}>
+        <EditorForm editorForm={editorForm} />
+      </div>
+      <div className={styles.editorBox}>
+        <Editor editorValue={editorValue} setEditorValue={setEditorValue} />
+      </div>
     </Modal>
   );
 }

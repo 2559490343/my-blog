@@ -1,8 +1,8 @@
 import Artical from "@/model/artical";
-import { transformDataSource } from "@/utils";
+import { getNowTimeString, transformDataSource } from "@/utils";
 import { executeSql } from "@/utils/db";
 import { ListResult, Result } from "@/utils/result";
-import { Controller, MySqlErrorType, ObjType } from "@/utils/types";
+import { Controller, MySqlErrorType } from "@/utils/types";
 import { Context } from "koa";
 import { RowDataPacket } from "mysql2";
 
@@ -38,8 +38,10 @@ export default class ArticalsController implements Controller {
     ctx.body = result;
   }
   async create(ctx: Context) {
-    const params = ctx.request.body as Artical;
     const result = new Result();
+    const params = ctx.request.body as Artical;
+    params.createUser = "admin";
+    params.createTime = getNowTimeString();
     try {
       const { rows } = await executeSql("INSERT", this.schema, params);
       if (rows) {
@@ -54,6 +56,8 @@ export default class ArticalsController implements Controller {
   }
   async update(ctx: Context) {
     const params = ctx.request.body as Artical;
+    params.updateTime = getNowTimeString();
+    params.updateUser = "admin";
     const result = new Result();
     try {
       await executeSql("UPDATE", this.schema, params);

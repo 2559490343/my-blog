@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import styles from './Blog.less';
 import { history } from 'umi';
 import Container from '@/components/container';
-import { Button, Input, Space, Tag } from 'antd';
+import { Button, Input, Space, Spin, Tag } from 'antd';
 import { ArticleType, SortType, TagDataType } from './types';
 import {
   UserOutlined,
@@ -28,13 +28,15 @@ const Blog = () => {
   >({});
   const [currentSort, setCurrentSort] = useState<SortType | undefined>();
   const [searchVal, setSearchVal] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const onItemClick = (row: ArticleType) => {
-    console.log(row);
-    history.push('/blog/blog-detail');
+    history.push(`/blog/blog-detail?id=${row.id}`);
   };
   const getData = async () => {
+    setLoading(true);
     const res = await getListApi({});
+    setLoading(false);
     if (res.success) {
       const list = res.data.list ?? [];
       setListData(list);
@@ -77,6 +79,10 @@ const Blog = () => {
       {
         label: 'Nodejs',
         count: 8,
+      },
+      {
+        label: 'GO',
+        count: 1,
       },
     ]);
   };
@@ -145,50 +151,56 @@ const Blog = () => {
           </div>
         </Container>
         <div className={styles.list}>
-          {listData.map((item, idx) => (
-            <Container className={styles.item} key={idx}>
-              <div className={styles.cover} onClick={() => onItemClick(item)}>
-                <img
-                  src="https://img1.baidu.com/it/u=4106831853,1587981098&fm=253&fmt=auto&app=138&f=JPEG?w=550&h=354"
-                  alt=""
-                />
-              </div>
-              <div className={styles.info}>
-                <div className={styles.title} onClick={() => onItemClick(item)}>
-                  痞子衡嵌入式：聊聊i.MXRT1xxx上的普通GPIO与高速GPIO差异及其用法
+          <Spin spinning={loading} style={{ minHeight: 300 }}>
+            {listData.map((item, idx) => (
+              <Container className={styles.item} key={idx}>
+                <div className={styles.cover} onClick={() => onItemClick(item)}>
+                  <img
+                    src="https://img1.baidu.com/it/u=4106831853,1587981098&fm=253&fmt=auto&app=138&f=JPEG?w=550&h=354"
+                    alt=""
+                  />
                 </div>
-                <div className={styles.introduction}>
-                  大家好，我是痞子衡，是正经搞技术的痞子。今天痞子衡给大家介绍的是i.MXRT上的普通GPIO与高速GPIO差异。GPIO
-                  可以说是
-                  MCU上最简单最常用的外设模块了，当一些原生功能外设接口模块不能满足项目设计要求时，我们常常会考虑使用GPIO
-                  来软件模拟实现相应功能，这时候 GPIO 本身性能
+                <div className={styles.info}>
+                  <div
+                    className={styles.title}
+                    onClick={() => onItemClick(item)}
+                  >
+                    {item.title}
+                  </div>
+                  <div className={styles.introduction}>{item.abstract}</div>
+                  <div className={styles.kind}>
+                    {item.tags?.split(',').map((tagName) => (
+                      <Tag
+                        onClick={() => handleSelectKind(tagName)}
+                        key={tagName}
+                      >
+                        {tagName}
+                      </Tag>
+                    )) ?? '—'}
+                  </div>
+                  <div className={styles.otherInfo}>
+                    <Space size={16}>
+                      <div className={styles.author}>
+                        <UserOutlined /> {item.createUser}
+                      </div>
+                      <div className={styles.createDate}>
+                        <HistoryOutlined /> {item.createTime}
+                      </div>
+                      {/* <div className={styles.readCount}>
+                        <EyeOutlined /> 63
+                      </div>
+                      <div className={styles.likeCount}>
+                        <HeartOutlined /> 55
+                      </div>
+                      <div className={styles.commentCount}>
+                        <MessageOutlined /> 8
+                      </div> */}
+                    </Space>
+                  </div>
                 </div>
-                <div className={styles.kind}>
-                  <Tag onClick={() => handleSelectKind('前端')}>前端</Tag>
-                  <Tag>React</Tag>
-                </div>
-                <div className={styles.otherInfo}>
-                  <Space size={16}>
-                    <div className={styles.author}>
-                      <UserOutlined /> 熊熊熊
-                    </div>
-                    <div className={styles.createDate}>
-                      <HistoryOutlined /> 2022-10-22
-                    </div>
-                    <div className={styles.readCount}>
-                      <EyeOutlined /> 63
-                    </div>
-                    <div className={styles.likeCount}>
-                      <HeartOutlined /> 55
-                    </div>
-                    <div className={styles.commentCount}>
-                      <MessageOutlined /> 8
-                    </div>
-                  </Space>
-                </div>
-              </div>
-            </Container>
-          ))}
+              </Container>
+            ))}
+          </Spin>
         </div>
       </div>
       <Container className={styles.kindBox}>
@@ -214,7 +226,7 @@ const Blog = () => {
           </Space>
         </div>
       </Container>
-      <Write />
+      <Write freshList={handleSearch} />
     </div>
   );
 };

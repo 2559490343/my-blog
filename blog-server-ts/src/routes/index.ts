@@ -4,7 +4,7 @@ import path from "path";
 
 const router = getKoaRouter({ prefix: "/blog-server" });
 const files = fs.readdirSync(__dirname);
-console.log("files--", files);
+
 files.forEach((name) => {
   const fileName = name.substring(0, name.length - 3);
   const file = require(path.join(__dirname, name));
